@@ -20,7 +20,9 @@ public class Drivetrain extends Subsystem {
 
     }
 
-    public void setTankDrive(double leftDrive, double rightDrive){
+    public void setTankDrive(double leftspeed, double rightspeed){
+        leftMotors.set(leftspeed);
+        rightMotors.set(rightspeed);
 
     }
 
