@@ -1,5 +1,7 @@
 package frc.team5332.robot;
 
+import edu.wpi.first.wpilibj.CounterBase;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class CMap {
@@ -9,6 +11,7 @@ public class CMap {
     // Motors
 
     // Encoders
+    public static Encoder testEncoder = new Encoder(0,1, true, CounterBase.EncodingType.k4X);
 
     // Pneumatics
 

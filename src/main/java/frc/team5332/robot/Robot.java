@@ -49,7 +49,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit(){
-
+    CMap.testEncoder.reset();
   }
 
   /**
@@ -57,7 +57,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-
+    System.out.println(CMap.testEncoder.getRaw());
   }
 
   /**
