@@ -1,6 +1,7 @@
 package frc.team5332.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -17,6 +18,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    CMap.setupJoystickButtons();
 
   }
 
@@ -57,7 +59,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-
+    Scheduler.getInstance().run();
   }
 
   /**
