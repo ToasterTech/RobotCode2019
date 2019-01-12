@@ -17,8 +17,9 @@ public class CMap {
 
     // Subsystems
  public static HatchGrabber hatchGrabber = new HatchGrabber();
+ public static JoystickButton greenbutton = new JoystickButton(gamepad,1);
     public static void setupJoystickButtons(){
-        JoystickButton greenbutton = new JoystickButton(gamepad,0);
                 greenbutton.whenPressed(new ChangeGrabberState());
+                System.out.println("setupjoystick");
     }
 }
