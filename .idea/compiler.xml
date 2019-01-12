@@ -2,6 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="Programming_main" target="11" />
+      <module name="Programming_test" target="11" />
       <module name="RobotCode2019_main" target="11" />
       <module name="RobotCode2019_test" target="11" />
     </bytecodeTargetLevel>
