@@ -1,9 +1,6 @@
 package frc.team5332.subsystems;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drivetrain extends Subsystem {
@@ -12,6 +9,8 @@ public class Drivetrain extends Subsystem {
     Encoder leftDriveEncoder, rightDriveEncoder;
 
     public Drivetrain(){
+        leftMotors=new SpeedControllerGroup(new VictorSP(0), new VictorSP(1));
+        rightMotors=new SpeedControllerGroup(new VictorSP(2),new VictorSP(3));
 
     }
 
