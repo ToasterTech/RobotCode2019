@@ -4,14 +4,15 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drivetrain extends Subsystem {
-    SpeedControllerGroup leftMotors, rightMotors;
+    PWMTalonSRX leftMotor1, leftmotor2, rightMotor1,rightmotor2;
 
     Encoder leftDriveEncoder, rightDriveEncoder;
 
     public Drivetrain(){
-        leftMotors=new SpeedControllerGroup(new VictorSP(0), new VictorSP(1));
-        rightMotors=new SpeedControllerGroup(new VictorSP(2),new VictorSP(3));
-
+        leftMotor1 = new PWMTalonSRX(1);
+        leftmotor2 = new PWMTalonSRX(3);
+        rightMotor1 = new PWMTalonSRX(0);
+        rightmotor2 = new PWMTalonSRX (2);
     }
 
     @Override
@@ -20,9 +21,12 @@ public class Drivetrain extends Subsystem {
     }
 
     public void setTankDrive(double leftspeed, double rightspeed){
-        leftMotors.set(leftspeed);
-        rightMotors.set(rightspeed);
-
+        leftMotor1.set(leftspeed);
+        leftmotor2.set(leftspeed);
+        System.out.println(leftspeed);
+        rightMotor1.set(rightspeed);
+        rightmotor2.set(rightspeed);
+        System.out.println(rightspeed);
     }
 
     public void stopMotors(){
@@ -38,8 +42,8 @@ public class Drivetrain extends Subsystem {
     /// PID Stuff
 
     // Initialize the PID Controllers for Each Size (0.9 is a placeholder for now)
-    PIDController leftDrivePID = new PIDController(0.9, 0, 0, leftDriveEncoder, leftMotors);
-    PIDController rightDrivePID = new PIDController(0.9, 0, 0, rightDriveEncoder, rightMotors);
+    PIDController leftDrivePID; //= new PIDController(0.9, 0, 0, leftDriveEncoder, leftMotors);
+    PIDController rightDrivePID;// = new PIDController(0.9, 0, 0, rightDriveEncoder, rightMotors);
 
 
     public void setLeftSetpoint(double setpoint){

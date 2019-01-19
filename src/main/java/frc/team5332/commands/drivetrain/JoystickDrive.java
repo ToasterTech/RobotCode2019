@@ -1,6 +1,7 @@
 package frc.team5332.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.team5332.robot.CMap;
 
 public class JoystickDrive extends Command {
 
@@ -10,6 +11,8 @@ public class JoystickDrive extends Command {
 
     @Override
     protected void execute() {
+        CMap.drivetrain.setTankDrive(-CMap.gamepad.getRawAxis(1), CMap.gamepad.getRawAxis(5));
+        System.out.println("toast");
 
     }
 
