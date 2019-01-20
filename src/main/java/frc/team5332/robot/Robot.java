@@ -52,8 +52,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit(){
-    Scheduler.getInstance().add(new JoystickDrive());
-
+    //Scheduler.getInstance().add(new JoystickDrive());
   }
 
   /**
@@ -61,7 +60,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    Scheduler.getInstance().run();
+    //Scheduler.getInstance().run();
+
+    CMap.drivetrain.printEncoderOutputs();
   }
 
   /**
