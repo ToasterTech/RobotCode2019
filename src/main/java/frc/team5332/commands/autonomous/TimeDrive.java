@@ -18,4 +18,14 @@ public class TimeDrive extends Command {
     protected void execute() {
         CMap.drivetrain.setTankDrive( leftspeed, rightspeed);
     }
+
+    @Override
+    protected boolean isFinished() {
+        return false;
+    }
+
+    @Override
+    protected void end() {
+        super.end();
+    }
 }
