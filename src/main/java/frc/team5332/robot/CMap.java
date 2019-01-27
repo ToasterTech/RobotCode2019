@@ -2,9 +2,10 @@ package frc.team5332.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.team5332.commands.HatchGrabber.ChangeGrabberState;
+import frc.team5332.commands.intake.ChangeGrabberState;
 import frc.team5332.subsystems.Drivetrain;
 import frc.team5332.subsystems.HatchGrabber;
+import frc.team5332.subsystems.Intake;
 
 public class CMap {
     // Joysticks
@@ -17,9 +18,11 @@ public class CMap {
     // Pneumatics
 
     // Subsystems
-    public static HatchGrabber hatchGrabber = new HatchGrabber();
-    public static JoystickButton greenbutton = new JoystickButton(gamepad, 1);
+    public static Intake intake = new Intake();
     public static Drivetrain drivetrain = new Drivetrain();
+
+    // Buttons
+    public static JoystickButton greenbutton = new JoystickButton(gamepad, 1);
 
     public static void setupJoystickButtons() {
         greenbutton.whenPressed(new ChangeGrabberState());
