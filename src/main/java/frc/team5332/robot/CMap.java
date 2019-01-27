@@ -9,7 +9,7 @@ import frc.team5332.subsystems.HatchGrabber;
 public class CMap {
     // Joysticks
     public static Joystick gamepad = new Joystick(0);
-
+    public static Joystick operatorStick = new Joystick(1);
     // Motors
 
     // Encoders
