@@ -2,8 +2,9 @@ package frc.team5332.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Intake {
+public class Intake extends Subsystem {
     DoubleSolenoid hoodPistons;
     DoubleSolenoid rollerPistons;
     DoubleSolenoid hatchGrabber;
@@ -12,6 +13,11 @@ public class Intake {
 
     public Intake(){
 
+    }
+
+    @Override
+    protected void initDefaultCommand() {
+        
     }
 
     public void changeHoodState(){

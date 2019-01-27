@@ -2,6 +2,7 @@ package frc.team5332.subsystems;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.team5332.robot.CMap;
 
 public class Drivetrain extends Subsystem {
     PWMTalonSRX leftMotor1, leftmotor2, rightMotor1,rightmotor2;
@@ -11,16 +12,16 @@ public class Drivetrain extends Subsystem {
     Encoder leftDriveEncoder, rightDriveEncoder;
 
     public Drivetrain(){
-        leftMotor1  = new PWMTalonSRX(1);
-        leftmotor2  = new PWMTalonSRX(3);
-        rightMotor1 = new PWMTalonSRX(0);
-        rightmotor2 = new PWMTalonSRX (2);
+        leftMotor1  = new PWMTalonSRX(CMap.leftDriveMotor1);
+        leftmotor2  = new PWMTalonSRX(CMap.leftDriveMotor2);
+        rightMotor1 = new PWMTalonSRX(CMap.rightDriveMotor1);
+        rightmotor2 = new PWMTalonSRX (CMap.rightDriveMotor2);
 
         leftMotors  = new SpeedControllerGroup(leftMotor1, leftmotor2);
         rightMotors = new SpeedControllerGroup(rightMotor1, rightmotor2);
 
-        leftDriveEncoder  = new Encoder(0, 1, true, CounterBase.EncodingType.k4X);
-        rightDriveEncoder = new Encoder(2, 3, true, CounterBase.EncodingType.k4X);
+        leftDriveEncoder  = new Encoder(CMap.leftDriveEncoderA, CMap.leftDriveEncoderB, true, CounterBase.EncodingType.k4X);
+        rightDriveEncoder = new Encoder(CMap.rightDriveEncoderA, CMap.rightDriveEncoderB, true, CounterBase.EncodingType.k4X);
     }
 
     @Override
