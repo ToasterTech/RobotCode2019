@@ -23,6 +23,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     CMap.setupJoystickButtons();
+    CMap.setupNetworkTables();
 
     CameraServer cameraServer = CameraServer.getInstance();
     HttpCamera jetsonCamera = new HttpCamera("outputStreamServer", "http://10.53.32.12:5800/stream.mjpg");
@@ -70,6 +71,16 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
 
     CMap.drivetrain.printEncoderOutputs();
+  }
+
+
+  @Override
+  public void disabledInit() {
+    Scheduler.getInstance().removeAll();
+
+    if(DriverStation.getInstance().isFMSAttached() && CMap.teleopExecuted){
+      Scheduler.getInstance().add(new ShutdownJetson());
+    }
   }
 
   /**
