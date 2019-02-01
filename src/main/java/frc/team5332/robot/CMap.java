@@ -1,6 +1,9 @@
 package frc.team5332.robot;
 
-import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team5332.commands.intake.ChangeGrabberState;
@@ -8,6 +11,18 @@ import frc.team5332.subsystems.Drivetrain;
 import frc.team5332.subsystems.Intake;
 
 public class CMap {
+    // NetworkTables stuff
+    public static NetworkTableInstance mainInstance;
+    public static NetworkTable visionTable;
+
+    public static NetworkTableEntry angle;
+    public static NetworkTableEntry targetAcquired;
+    public static NetworkTableEntry shutdownJetson;
+
+    // Global Variables
+    public static boolean teleopExecuted;
+
+
     // Joysticks
     public static Joystick gamepad = new Joystick(0);
     public static Joystick operatorStick = new Joystick(1);
@@ -35,6 +50,13 @@ public class CMap {
 
     public static void setupJoystickButtons() {
         greenbutton.whenPressed(new ChangeGrabberState());
-        System.out.println("setupjoystick");
+    }
+
+    public static void setupNetworkTables(){
+        mainInstance = NetworkTableInstance.getDefault();
+        visionTable = mainInstance.getTable("visionTable");
+
+        angle = visionTable.getEntry("angle");
+        shutdownJetson = visionTable.getEntry("shutdownJetson");
     }
 }
