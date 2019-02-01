@@ -11,6 +11,8 @@ import frc.team5332.subsystems.Drivetrain;
 import frc.team5332.subsystems.Intake;
 
 public class CMap {
+
+
     // NetworkTables stuff
     public static NetworkTableInstance mainInstance;
     public static NetworkTable visionTable;
@@ -21,7 +23,7 @@ public class CMap {
 
     // Global Variables
     public static boolean teleopExecuted;
-
+    public static boolean visionAlignmentInProgress = false;
 
     // Joysticks
     public static Joystick gamepad = new Joystick(0);
