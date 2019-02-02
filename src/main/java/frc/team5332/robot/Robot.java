@@ -4,6 +4,7 @@ import edu.wpi.cscore.HttpCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.team5332.commands.drivetrain.AngleDrivePivot;
 import frc.team5332.commands.drivetrain.JoystickDrive;
 
 /**
@@ -24,7 +25,7 @@ public class Robot extends TimedRobot {
     CMap.setupJoystickButtons();
 
     CameraServer cameraServer = CameraServer.getInstance();
-    HttpCamera jetsonCamera = new HttpCamera("outputStreamServer", "http://10.53.32.12:5800/?action=stream");
+    HttpCamera jetsonCamera = new HttpCamera("outputStreamServer", "http://10.53.32.12:5800/stream.mjpg");
     cameraServer.startAutomaticCapture(jetsonCamera);
   }
 
@@ -57,8 +58,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit(){
-    //Scheduler.getInstance().add(new AngleDriveTank(90));
-    Scheduler.getInstance().add(new JoystickDrive());
+    Scheduler.getInstance().add(new AngleDrivePivot(-90));
+    //Scheduler.getInstance().add(new JoystickDrive());
   }
 
   /**
