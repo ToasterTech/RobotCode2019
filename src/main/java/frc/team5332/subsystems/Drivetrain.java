@@ -11,6 +11,8 @@ public class Drivetrain extends Subsystem {
 
     Encoder leftDriveEncoder, rightDriveEncoder;
 
+    PIDController leftDrivePID, rightDrivePID;
+
     public Drivetrain(){
         leftMotor1  = new PWMTalonSRX(CMap.leftDriveMotor1);
         leftmotor2  = new PWMTalonSRX(CMap.leftDriveMotor2);
@@ -20,8 +22,26 @@ public class Drivetrain extends Subsystem {
         leftMotors  = new SpeedControllerGroup(leftMotor1, leftmotor2);
         rightMotors = new SpeedControllerGroup(rightMotor1, rightmotor2);
 
-        leftDriveEncoder  = new Encoder(CMap.leftDriveEncoderA, CMap.leftDriveEncoderB, true, CounterBase.EncodingType.k4X);
+        rightMotors.setInverted(true);
+
+        leftDriveEncoder  = new Encoder(CMap.leftDriveEncoderA, CMap.leftDriveEncoderB, false, CounterBase.EncodingType.k4X);
         rightDriveEncoder = new Encoder(CMap.rightDriveEncoderA, CMap.rightDriveEncoderB, true, CounterBase.EncodingType.k4X);
+
+        leftDriveEncoder.setDistancePerPulse((2*Math.PI*3)/(264*4));
+        rightDriveEncoder.setDistancePerPulse((2*Math.PI*3)/(264*4));
+
+
+        leftDrivePID = new PIDController(0.9, 0, 0, leftDriveEncoder, leftMotors);
+        rightDrivePID = new PIDController(0.9, 0, 0, rightDriveEncoder, rightMotors);
+
+        leftDrivePID.setAbsoluteTolerance(.1);
+        rightDrivePID.setAbsoluteTolerance(.1);
+
+        leftDrivePID.setOutputRange(-0.2, 0.2);
+        rightDrivePID.setOutputRange(-0.2, 0.2);
+
+        leftDrivePID.disable();
+        rightDrivePID.disable();
     }
 
     @Override
@@ -30,17 +50,13 @@ public class Drivetrain extends Subsystem {
     }
 
     public void setTankDrive(double leftspeed, double rightspeed){
-        leftMotor1.set(leftspeed);
-        leftmotor2.set(leftspeed);
-        System.out.println(leftspeed);
-        rightMotor1.set(rightspeed);
-        rightmotor2.set(rightspeed);
-        System.out.println(rightspeed);
+        leftMotors.set(leftspeed);
+        rightMotors.set(rightspeed);
     }
 
     public void printEncoderOutputs(){
-        System.out.println("Left Encoder: " + leftDriveEncoder.getRaw());
-        System.out.println("Right Encoder: " + rightDriveEncoder.getRaw());
+        System.out.println("Left Encoder: " + leftDriveEncoder.getDistance());
+        System.out.println("Right Encoder: " + rightDriveEncoder.getDistance());
     }
 
     public void stopMotors(){
@@ -56,8 +72,6 @@ public class Drivetrain extends Subsystem {
     /// PID Stuff
 
     // Initialize the PID Controllers for Each Size (0.9 is a placeholder for now)
-    PIDController leftDrivePID; // = new PIDController(0.9, 0, 0, leftDriveEncoder, leftMotors);
-    PIDController rightDrivePID; // = new PIDController(0.9, 0, 0, rightDriveEncoder, rightMotors);
 
 
     public void setLeftSetpoint(double setpoint){

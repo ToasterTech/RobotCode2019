@@ -13,10 +13,10 @@ public class CMap {
     public static Joystick operatorStick = new Joystick(1);
 
     // Motors
-    public static int leftDriveMotor1 = 1;
-    public static int leftDriveMotor2 = 3;
-    public static int rightDriveMotor1 = 0;
-    public static int rightDriveMotor2 = 2;
+    public static int leftDriveMotor1 = 0;
+    public static int leftDriveMotor2 = 2;
+    public static int rightDriveMotor1 = 1;
+    public static int rightDriveMotor2 = 3;
 
     // Encoders
     public static int leftDriveEncoderA = 0;

@@ -1,5 +1,6 @@
 package frc.team5332.commands.drivetrain;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team5332.robot.CMap;
 
@@ -15,6 +16,8 @@ public class AngleDrive extends Command {
 
     }
     protected void execute() {
+        DriverStation.reportWarning("Left Setpoint: " + wheeldistance, false);
+        DriverStation.reportWarning("Right Setpoint: " + -wheeldistance, false);
 
         CMap.drivetrain.setLeftSetpoint(wheeldistance);
         CMap.drivetrain.setRightSetpoint(-wheeldistance);
@@ -24,7 +27,7 @@ public class AngleDrive extends Command {
     }
 
     protected void end() {
-
+        DriverStation.reportWarning("Angle Drive Finished", false);
         CMap.drivetrain.disablePID();
     }
 
