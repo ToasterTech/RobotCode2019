@@ -44,7 +44,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-
+    Scheduler.getInstance().add(new JoystickDrive());
   }
 
   /**
@@ -52,12 +52,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-
+    Scheduler.getInstance().run();
   }
 
   @Override
   public void teleopInit(){
-    //Scheduler.getInstance().add(new AngleDrive(90));
+    //Scheduler.getInstance().add(new AngleDriveTank(90));
     Scheduler.getInstance().add(new JoystickDrive());
   }
 

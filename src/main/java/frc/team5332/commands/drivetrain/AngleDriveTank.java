@@ -4,13 +4,13 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team5332.robot.CMap;
 
-public class AngleDrive extends Command {
+public class AngleDriveTank extends Command {
     double angle;
     double distancebetweenwheels=25;
     double wheeldistance;
 
 
-    public AngleDrive(double angle){
+    public AngleDriveTank(double angle){
         this.angle = angle;
         wheeldistance = (2 * Math.PI * distancebetweenwheels * 0.5 * angle) / 360.0;
 
