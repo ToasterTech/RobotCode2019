@@ -1,6 +1,7 @@
 package frc.team5332.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.team5332.robot.CMap;
 
 public class JoystickElevator extends Command {
 
@@ -10,8 +11,13 @@ public class JoystickElevator extends Command {
 
     @Override
     protected void execute() {
-
+        CMap.elevator.setElevatorSpeed(CMap.operatorStick.getY());
+        System.out.println("toast");
     }
+
+
+
+
 
 
     @Override

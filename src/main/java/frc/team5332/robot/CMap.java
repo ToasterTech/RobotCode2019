@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team5332.commands.intake.ChangeGrabberState;
 import frc.team5332.subsystems.Drivetrain;
+import frc.team5332.subsystems.Elevator;
 import frc.team5332.subsystems.Intake;
 
 public class CMap {
@@ -29,7 +30,7 @@ public class CMap {
     // Subsystems
     public static Intake intake = new Intake();
     public static Drivetrain drivetrain = new Drivetrain();
-
+    public static Elevator elevator = new Elevator();
     // Buttons
     public static JoystickButton greenbutton = new JoystickButton(gamepad, 1);
 

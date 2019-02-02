@@ -9,7 +9,7 @@ public class ChangeHoodState extends Command {
     }
     @Override
     protected void execute() {
-
+        CMap.intake.changeHoodState();
     }
 
     @Override
