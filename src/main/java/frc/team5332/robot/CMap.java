@@ -21,6 +21,7 @@ public class CMap {
     public static NetworkTableEntry angle;
     public static NetworkTableEntry targetAcquired;
     public static NetworkTableEntry shutdownJetson;
+    public static NetworkTableEntry jetsonConnected;
 
     // Global Variables
     public static boolean teleopExecuted;
