@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Intake extends Subsystem {
+public class    Intake extends Subsystem {
     DoubleSolenoid hoodPistons;
     DoubleSolenoid rollerPistons;
     DoubleSolenoid hatchGrabber;
@@ -21,7 +21,12 @@ public class Intake extends Subsystem {
     }
 
     public void changeHoodState(){
-
+        DoubleSolenoid.Value currentstate = hoodPistons.get();
+        if (currentstate == DoubleSolenoid.Value.kForward) {
+            hoodPistons.set(DoubleSolenoid.Value.kReverse);
+        } else {
+            hoodPistons.set(DoubleSolenoid.Value.kForward);
+        }
     }
 
     public void changeHoodState(DoubleSolenoid.Value newValue){
@@ -42,6 +47,12 @@ public class Intake extends Subsystem {
     }
 
     public void changeRollerIntakeState(){
+        DoubleSolenoid.Value currentstate = rollerPistons.get();
+        if (currentstate == DoubleSolenoid.Value.kForward) {
+            rollerPistons.set(DoubleSolenoid.Value.kReverse);
+        } else {
+            rollerPistons.set(DoubleSolenoid.Value.kForward);
+        }
 
     }
 

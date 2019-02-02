@@ -18,7 +18,7 @@ public class ChangeGrabberState extends Command {
     }
 
     @Override
-    protected void end() {
+    protected void end  {
 
     }
 }
