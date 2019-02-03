@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team5332.commands.intake.ChangeGrabberState;
+import frc.team5332.commands.vision.VisionAlign;
 import frc.team5332.subsystems.Drivetrain;
 import frc.team5332.subsystems.Elevator;
 import frc.team5332.subsystems.Intake;
@@ -53,14 +54,14 @@ public class CMap {
     public static JoystickButton greenbutton = new JoystickButton(gamepad, 1);
 
     public static void setupJoystickButtons() {
-        greenbutton.whenPressed(new ChangeGrabberState());
+        greenbutton.whenPressed(new VisionAlign());
     }
 
     public static void setupNetworkTables(){
         mainInstance = NetworkTableInstance.getDefault();
-        visionTable = mainInstance.getTable("visionTable");
+        visionTable = mainInstance.getTable("vision_table");
 
-        angle = visionTable.getEntry("angle");
+        angle = visionTable.getEntry("Angle");
         shutdownJetson = visionTable.getEntry("shutdownJetson");
     }
 }
