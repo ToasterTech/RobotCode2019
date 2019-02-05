@@ -11,8 +11,10 @@ public class JoystickDrive extends Command {
 
     @Override
     protected void execute() {
-        CMap.drivetrain.setTankDrive(-CMap.gamepad.getRawAxis(1), -CMap.gamepad.getRawAxis(5));
-        System.out.println("toast");
+        if(!CMap.visionAlignmentInProgress) {
+            CMap.drivetrain.setTankDrive(-CMap.gamepad.getRawAxis(1), -CMap.gamepad.getRawAxis(5));
+        }
+        //System.out.println("toast");
 
     }
 

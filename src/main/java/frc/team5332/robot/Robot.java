@@ -2,9 +2,12 @@ package frc.team5332.robot;
 
 import edu.wpi.cscore.HttpCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.team5332.commands.drivetrain.AngleDrivePivot;
 import frc.team5332.commands.drivetrain.JoystickDrive;
+import frc.team5332.commands.vision.ShutdownJetson;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,6 +25,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     CMap.setupJoystickButtons();
+    CMap.setupNetworkTables();
 
     CameraServer cameraServer = CameraServer.getInstance();
     HttpCamera jetsonCamera = new HttpCamera("outputStreamServer", "http://10.53.32.12:5800/?action=stream");
@@ -57,7 +61,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit(){
-    //Scheduler.getInstance().add(new AngleDriveTank(90));
+    Scheduler.getInstance().removeAll();
+    System.out.println("Teleop Init");
+    //Scheduler.getInstance().add(new AngleDrivePivot(23.64375/2));
     Scheduler.getInstance().add(new JoystickDrive());
   }
 
@@ -68,7 +74,17 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    CMap.drivetrain.printEncoderOutputs();
+    //CMap.drivetrain.printEncoderOutputs();
+  }
+
+
+  @Override
+  public void disabledInit() {
+    Scheduler.getInstance().removeAll();
+
+    if(DriverStation.getInstance().isFMSAttached() && CMap.teleopExecuted){
+      Scheduler.getInstance().add(new ShutdownJetson());
+    }
   }
 
   /**

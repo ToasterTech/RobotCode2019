@@ -12,17 +12,23 @@ public class AngleDrivePivot extends Command {
 
     public AngleDrivePivot(double angle){
         this.angle = angle;
-        wheeldistance = (2 * Math.PI * distancebetweenwheels * angle) / 360.0;
+        wheeldistance = ((2 * Math.PI * distancebetweenwheels * angle) / (360.0*4));
+        DriverStation.reportWarning("Wheel Distance: " + wheeldistance, false);
 
     }
     protected void execute() {
+        /*
         if(angle > 0){
             CMap.drivetrain.setLeftSetpoint(wheeldistance);
             DriverStation.reportWarning("Left Setpoint: " + wheeldistance, false);
         } else {
             CMap.drivetrain.setRightSetpoint(wheeldistance);
             DriverStation.reportWarning("Right Setpoint: " + -wheeldistance, false);
-        }
+        }*/
+
+        CMap.drivetrain.setLeftSetpoint(wheeldistance);
+
+
 
     }
     protected boolean isFinished() {
