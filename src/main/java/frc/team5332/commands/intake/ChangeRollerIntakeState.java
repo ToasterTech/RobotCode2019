@@ -5,11 +5,12 @@ import frc.team5332.robot.CMap;
 
 public class ChangeRollerIntakeState extends Command {
     public ChangeRollerIntakeState(){
-    
+
     }
     @Override
     protected void execute() {
         CMap.intake.changeRollerIntakeState();
+
     }
 
     @Override

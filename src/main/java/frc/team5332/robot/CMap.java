@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team5332.commands.intake.ChangeGrabberState;
+import frc.team5332.commands.vision.DayToNight;
 import frc.team5332.commands.vision.VisionAlign;
 import frc.team5332.subsystems.Drivetrain;
 import frc.team5332.subsystems.Elevator;
@@ -23,6 +24,8 @@ public class CMap {
     public static NetworkTableEntry targetAcquired;
     public static NetworkTableEntry shutdownJetson;
     public static NetworkTableEntry jetsonConnected;
+    public static NetworkTableEntry visionMode;
+    public static NetworkTableEntry switchVisionMode;
 
     // Global Variables
     public static boolean teleopExecuted;
@@ -52,14 +55,21 @@ public class CMap {
     public static Elevator elevator = new Elevator();
     // Buttons
     public static JoystickButton greenbutton = new JoystickButton(gamepad, 1);
+    public static JoystickButton leftbumper = new JoystickButton(gamepad,5);
+    public static JoystickButton rightbumper = new JoystickButton(gamepad,6);
 
     public static void setupJoystickButtons() {
         greenbutton.whenPressed(new VisionAlign());
+        leftbumper.whenPressed(new DayToNight());
+        rightbumper.whenPressed(new VisionAlign());
     }
+
 
     public static void setupNetworkTables(){
         mainInstance = NetworkTableInstance.getDefault();
         visionTable = mainInstance.getTable("vision_table");
+
+        visionMode = visionTable.getEntry("visionMode");
 
         angle = visionTable.getEntry("Angle");
         shutdownJetson = visionTable.getEntry("shutdownJetson");
