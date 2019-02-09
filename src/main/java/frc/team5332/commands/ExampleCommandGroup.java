@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  *
  */
-public class ExampleCommandGroup extends CommandGroup {
+    public class ExampleCommandGroup extends CommandGroup {
 
     /***
      * So unlike commands, where we have to override multiple methods, with command groups we
@@ -21,7 +21,7 @@ public class ExampleCommandGroup extends CommandGroup {
      * there is some flexibility.
      */
     public ExampleCommandGroup(){
-        addSequential(new ExampleCommand(0)); //So this command will run first in a sequential order. Once it finishes, we then look at the next command.
+        addSequential(new   vgu  (0)); //So this command will run first in a sequential order. Once it finishes, we then look at the next command.
         addParallel(new ExampleCommand(1)); //So this is a parallel command, so now the command will run simultaneously with whichever one is listed next.
         addSequential(new ExampleCommand(2)); //So this is a sequential, so it runs next.
 
