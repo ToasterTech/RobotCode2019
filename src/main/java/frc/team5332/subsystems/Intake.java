@@ -1,8 +1,10 @@
 package frc.team5332.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.team5332.robot.CMap;
 
 public class    Intake extends Subsystem {
     DoubleSolenoid hoodPistons;
@@ -11,13 +13,24 @@ public class    Intake extends Subsystem {
 
     SpeedControllerGroup cargoRollers;
 
-    public Intake(){
+    DigitalInput limitSwitch;
 
+    State currentState;
+
+    public enum State{
+        RESET,
+        HATCH,
+        CARGO
+    }
+
+    public Intake(){
+        limitSwitch = new DigitalInput(CMap.limitSwitch);
+        currentState = State.RESET;
     }
 
     @Override
     protected void initDefaultCommand() {
-        
+
     }
 
     public void changeHoodState(){
@@ -27,6 +40,8 @@ public class    Intake extends Subsystem {
         } else {
             hoodPistons.set(DoubleSolenoid.Value.kForward);
         }
+
+
     }
 
     public void changeHoodState(DoubleSolenoid.Value newValue){
@@ -56,6 +71,14 @@ public class    Intake extends Subsystem {
 
     }
 
+    public State getState(){
+        return currentState;
+    }
+
+    public void setCurrentState(State newState){
+        currentState = newState;
+    }
+
     public void changeRollerIntakeState(DoubleSolenoid.Value newValue){
         rollerPistons.set(newValue);
     }
@@ -64,4 +87,7 @@ public class    Intake extends Subsystem {
         cargoRollers.set(speed);
     }
 
+    public boolean getLimitSwitch(){
+        return limitSwitch.get();
+    }
 }
