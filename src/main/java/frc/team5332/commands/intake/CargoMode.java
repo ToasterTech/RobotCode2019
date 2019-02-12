@@ -15,5 +15,7 @@ public class CargoMode extends CommandGroup {
 
     protected void execute() {
         CMap.intake.setCurrentState(Intake.State.CARGO);
+        CMap.rightbumper.whenPressed(new ChangeRollerIntakeState);
     }
+
 }

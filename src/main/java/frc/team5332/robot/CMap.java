@@ -3,12 +3,10 @@ package frc.team5332.robot;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.team5332.commands.intake.ChangeGrabberState;
 import frc.team5332.commands.vision.DayToNight;
+import frc.team5332.commands.intake.HatchToCargo;
 import frc.team5332.commands.vision.VisionAlign;
 import frc.team5332.subsystems.Drivetrain;
 import frc.team5332.subsystems.Elevator;
@@ -27,6 +25,7 @@ public class CMap {
     public static NetworkTableEntry jetsonConnected;
     public static NetworkTableEntry visionMode;
     public static NetworkTableEntry switchVisionMode;
+    public static NetworkTableEntry switchIntakeMode;
 
     // Global Variables
     public static boolean teleopExecuted;
@@ -67,11 +66,12 @@ public class CMap {
     public static JoystickButton rightbumper = new JoystickButton(gamepad,6);
     public static JoystickButton bluebutton = new JoystickButton(gamepad,2);
     public static JoystickButton yellowbutton = new JoystickButton(gamepad,3);
+
     public static void setupJoystickButtons() {
         greenbutton.whenPressed(new VisionAlign());
         leftbumper.whenPressed(new DayToNight());
-        rightbumper.whenPressed(new VisionAlign());
-        bluebutton.whenPressed(new VisionAlign());
+        rightbumper.whenPressed(new ());
+        bluebutton.whenPressed(new HatchToCargo());
         yellowbutton.whenPressed(new VisionAlign());
     }
 

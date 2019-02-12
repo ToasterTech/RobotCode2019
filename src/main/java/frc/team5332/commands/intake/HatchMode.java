@@ -15,5 +15,7 @@ public class HatchMode extends CommandGroup {
     @Override
     protected void execute() {
         CMap.intake.setCurrentState(Intake.State.HATCH);
+        CMap.rightbumper.whenPressed(new ChangeGrabberState);
     }
+
 }
