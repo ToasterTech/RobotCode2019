@@ -12,7 +12,6 @@ public class JoystickElevator extends Command {
     @Override
     protected void execute() {
         CMap.elevator.setElevatorSpeed(CMap.operatorStick.getY());
-        System.out.println("toast");
     }
 
 

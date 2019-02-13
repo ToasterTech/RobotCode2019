@@ -70,9 +70,6 @@ public class CMap {
     public static void setupJoystickButtons() {
         greenbutton.whenPressed(new VisionAlign());
         leftbumper.whenPressed(new DayToNight());
-        rightbumper.whenPressed(new ());
-        bluebutton.whenPressed(new HatchToCargo());
-        yellowbutton.whenPressed(new VisionAlign());
     }
 
 
@@ -87,6 +84,6 @@ public class CMap {
 
 
 
-        }
+
     }
 }

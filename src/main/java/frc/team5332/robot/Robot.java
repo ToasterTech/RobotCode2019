@@ -5,8 +5,10 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.team5332.commands.autonomous.TestMotor;
 import frc.team5332.commands.drivetrain.AngleDrivePivot;
 import frc.team5332.commands.drivetrain.JoystickDrive;
+import frc.team5332.commands.elevator.JoystickElevator;
 import frc.team5332.commands.vision.ShutdownJetson;
 
 /**
@@ -62,9 +64,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit(){
     Scheduler.getInstance().removeAll();
-    System.out.println("Teleop Init");
     //Scheduler.getInstance().add(new AngleDrivePivot(23.64375/2));
     Scheduler.getInstance().add(new JoystickDrive());
+    Scheduler.getInstance().add(new JoystickElevator());
+    //Scheduler.getInstance().add(new TestMotor(8, 0.5));
+
   }
 
   /**
@@ -74,7 +78,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    //CMap.drivetrain.printEncoderOutputs();
+    CMap.drivetrain.printEncoderOutputs();
   }
 
 
@@ -93,9 +97,6 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
-
-  @Override
-  public void
 }
 
 
