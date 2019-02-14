@@ -5,21 +5,25 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.team5332.robot.CMap;
 
 public class ChangeHoodState extends Command {
-    DoubleSolenoid.Value preferredState;
+    boolean preferredState;
+    boolean settingToPreferredState;
 
     public ChangeHoodState(){
-        preferredState = null;
+        preferredState = false;
+        settingToPreferredState = false;
     }
 
-    public ChangeHoodState(DoubleSolenoid.Value preferredState){
+    public ChangeHoodState(boolean preferredState){
         this.preferredState = preferredState;
+        settingToPreferredState = true;
     }
+
     @Override
     protected void execute() {
-        if(preferredState != null){
-            CMap.intake.changeHoodState(preferredState);
-        } else {
+        if(!settingToPreferredState){
             CMap.intake.changeHoodState();
+        } else {
+            CMap.intake.changeHoodState(preferredState);
         }
     }
     @Override

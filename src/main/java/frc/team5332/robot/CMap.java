@@ -5,6 +5,9 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team5332.commands.intake.CargoMode;
+import frc.team5332.commands.intake.HatchMode;
+import frc.team5332.commands.intake.ResetIntake;
 import frc.team5332.commands.vision.DayToNight;
 import frc.team5332.commands.intake.HatchToCargo;
 import frc.team5332.commands.vision.VisionAlign;
@@ -55,6 +58,9 @@ public class CMap {
     public static int rightDriveEncoderB = 3;
 
     // Pneumatics
+    public static int hatchGrabberSolenoid = 0;
+    public static int hoodSolenoid = 1;
+    public static int rollerSolenoid = 2;
 
     // Subsystems
     public static Intake intake = new Intake();
@@ -67,9 +73,15 @@ public class CMap {
     public static JoystickButton bluebutton = new JoystickButton(gamepad,2);
     public static JoystickButton yellowbutton = new JoystickButton(gamepad,3);
 
+    public static JoystickButton operator6 = new JoystickButton(operatorStick, 6);
+    public static JoystickButton operator7 = new JoystickButton(operatorStick, 7);
+    public static JoystickButton operator8 = new JoystickButton(operatorStick, 8);
     public static void setupJoystickButtons() {
-        greenbutton.whenPressed(new VisionAlign());
-        leftbumper.whenPressed(new DayToNight());
+        leftbumper.whenPressed(new VisionAlign());
+
+        operator6.whenPressed(new HatchMode());
+        operator7.whenPressed(new CargoMode());
+        operator8.whenPressed(new ResetIntake());
     }
 
 

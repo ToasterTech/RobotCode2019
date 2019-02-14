@@ -2,6 +2,7 @@ package frc.team5332.robot;
 
 import edu.wpi.cscore.HttpCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -19,6 +20,7 @@ import frc.team5332.commands.vision.ShutdownJetson;
  * project.
  */
 public class Robot extends TimedRobot {
+  Compressor compressor;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -28,6 +30,10 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     CMap.setupJoystickButtons();
     CMap.setupNetworkTables();
+
+    compressor = new Compressor();
+    compressor.setClosedLoopControl(true);
+    compressor.start();
 
     CameraServer cameraServer = CameraServer.getInstance();
     HttpCamera jetsonCamera = new HttpCamera("outputStreamServer", "http://10.53.32.12:5800/?action=stream");
@@ -63,6 +69,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit(){
+    compressor.start();
     Scheduler.getInstance().removeAll();
     //Scheduler.getInstance().add(new AngleDrivePivot(23.64375/2));
     Scheduler.getInstance().add(new JoystickDrive());

@@ -4,12 +4,13 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Solenoid;
 import frc.team5332.robot.CMap;
 
 public class    Intake extends Subsystem {
-    DoubleSolenoid hoodPistons;
-    DoubleSolenoid rollerPistons;
-    DoubleSolenoid hatchGrabber;
+    Solenoid hoodPistons;
+    Solenoid rollerPistons;
+    Solenoid hatchGrabber;
 
     SpeedControllerGroup cargoRollers;
 
@@ -24,8 +25,12 @@ public class    Intake extends Subsystem {
     }
 
     public Intake(){
-        limitSwitch = new DigitalInput(CMap.limitSwitch);
+        //limitSwitch = new DigitalInput(CMap.limitSwitch);
         currentState = State.RESET;
+
+        hoodPistons = new Solenoid(CMap.hoodSolenoid);
+        rollerPistons = new Solenoid(CMap.rollerSolenoid);
+        hatchGrabber = new Solenoid(CMap.hatchGrabberSolenoid);
     }
 
     @Override
@@ -34,39 +39,39 @@ public class    Intake extends Subsystem {
     }
 
     public void changeHoodState(){
-        DoubleSolenoid.Value currentstate = hoodPistons.get();
-        if (currentstate == DoubleSolenoid.Value.kForward) {
-            hoodPistons.set(DoubleSolenoid.Value.kReverse);
+        boolean currentstate = hoodPistons.get();
+        if (currentstate) {
+            hoodPistons.set(false);
         } else {
-            hoodPistons.set(DoubleSolenoid.Value.kForward);
+            hoodPistons.set(true);
         }
 
 
     }
 
-    public void changeHoodState(DoubleSolenoid.Value newValue){
+    public void changeHoodState(boolean newValue){
         hoodPistons.set(newValue);
     }
 
     public void changeHatchGrabberState(){
-        DoubleSolenoid.Value currentstate = hatchGrabber.get();
-        if (currentstate == DoubleSolenoid.Value.kForward) {
-            hatchGrabber.set(DoubleSolenoid.Value.kReverse);
+        boolean currentstate = hoodPistons.get();
+        if (currentstate) {
+            hatchGrabber.set(false);
         } else {
-            hatchGrabber.set(DoubleSolenoid.Value.kForward);
+            hatchGrabber.set(true);
         }
     }
 
-    public void changeHatchGrabberState(DoubleSolenoid.Value newValue){
+    public void changeHatchGrabberState(boolean newValue){
         hatchGrabber.set(newValue);
     }
 
     public void changeRollerIntakeState(){
-        DoubleSolenoid.Value currentstate = rollerPistons.get();
-        if (currentstate == DoubleSolenoid.Value.kForward) {
-            rollerPistons.set(DoubleSolenoid.Value.kReverse);
+        boolean currentstate = hoodPistons.get();
+        if (currentstate) {
+            rollerPistons.set(false);
         } else {
-            rollerPistons.set(DoubleSolenoid.Value.kForward);
+            rollerPistons.set(true);
         }
 
     }
@@ -79,7 +84,7 @@ public class    Intake extends Subsystem {
         currentState = newState;
     }
 
-    public void changeRollerIntakeState(DoubleSolenoid.Value newValue){
+    public void changeRollerIntakeState(boolean newValue){
         rollerPistons.set(newValue);
     }
 

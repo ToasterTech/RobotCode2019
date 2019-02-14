@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team5332.robot.CMap;
 
 public class Drivetrain extends Subsystem {
-    PWMTalonSRX leftMotor1, leftmotor2, rightMotor1,rightmotor2;
+    PWMTalonSRX leftMotor1, leftmotor2, leftMotor3, rightMotor1,rightmotor2, rightMotor3;
 
     SpeedControllerGroup leftMotors, rightMotors;
 
@@ -16,11 +16,13 @@ public class Drivetrain extends Subsystem {
     public Drivetrain(){
         leftMotor1  = new PWMTalonSRX(CMap.leftDriveMotor1);
         leftmotor2  = new PWMTalonSRX(CMap.leftDriveMotor2);
+        leftMotor3 = new PWMTalonSRX(CMap.leftDriveMotor3);
         rightMotor1 = new PWMTalonSRX(CMap.rightDriveMotor1);
         rightmotor2 = new PWMTalonSRX (CMap.rightDriveMotor2);
+        rightMotor3 = new PWMTalonSRX(CMap.rightDriveMotor3);
 
-        leftMotors  = new SpeedControllerGroup(leftMotor1, leftmotor2);
-        rightMotors = new SpeedControllerGroup(rightMotor1, rightmotor2);
+        leftMotors  = new SpeedControllerGroup(leftMotor1, leftmotor2, leftMotor3);
+        rightMotors = new SpeedControllerGroup(rightMotor1, rightmotor2, rightMotor3);
 
         rightMotors.setInverted(true);
 

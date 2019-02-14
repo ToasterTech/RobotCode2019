@@ -8,14 +8,14 @@ import frc.team5332.subsystems.Intake;
 public class HatchMode extends CommandGroup {
 
     public HatchMode() {
-        addSequential(new ChangeHoodState(DoubleSolenoid.Value.kReverse));
-        addSequential(new ChangeRollerIntakeState(DoubleSolenoid.Value.kForward));
+        addSequential(new ChangeHoodState(true));
+        addSequential(new ChangeRollerIntakeState(false));
     }
 
     @Override
     protected void execute() {
         CMap.intake.setCurrentState(Intake.State.HATCH);
-        CMap.rightbumper.whenPressed(new ChangeGrabberState);
+        CMap.rightbumper.whenPressed(new ChangeGrabberState());
     }
 
 }

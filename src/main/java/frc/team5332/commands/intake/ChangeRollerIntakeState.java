@@ -5,22 +5,25 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.team5332.robot.CMap;
 
 public class ChangeRollerIntakeState extends Command {
-    DoubleSolenoid.Value preferredState;
+    boolean preferredState;
+    boolean settingToPreferredState;
 
     public ChangeRollerIntakeState(){
-        preferredState = null;
+        preferredState = false;
+        settingToPreferredState = false;
     }
 
-    public ChangeRollerIntakeState(DoubleSolenoid.Value preferredState){
+    public ChangeRollerIntakeState(boolean preferredState){
         this.preferredState = preferredState;
+        settingToPreferredState = true;
     }
     
     @Override
     protected void execute() {
-        if(preferredState != null){
-            CMap.intake.changeHoodState(preferredState);
+        if(!settingToPreferredState){
+            CMap.intake.changeRollerIntakeState();
         } else {
-            CMap.intake.changeHoodState();
+            CMap.intake.changeRollerIntakeState(preferredState);
         }
     }
     @Override

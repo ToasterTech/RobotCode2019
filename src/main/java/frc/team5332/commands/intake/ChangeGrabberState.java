@@ -5,32 +5,34 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.team5332.robot.CMap;
 
 public class ChangeGrabberState extends Command {
-    DoubleSolenoid.Value preferredState;
+    boolean preferredState;
+    boolean settingToPreferredState;
 
     public ChangeGrabberState(){
-        preferredState = null;
+        preferredState = false;
+        settingToPreferredState = false;
     }
 
-    public ChangeGrabberState(DoubleSolenoid.Value preferredState){
+    public ChangeGrabberState(boolean preferredState){
         this.preferredState = preferredState;
+        settingToPreferredState = true;
     }
 
     @Override
     protected void execute() {
-        if(preferredState != null){
-            CMap.intake.changeHatchGrabberState(preferredState);
-        } else {
+        if(!settingToPreferredState){
             CMap.intake.changeHatchGrabberState();
+        } else {
+            CMap.intake.changeHatchGrabberState(preferredState);
         }
     }
-
     @Override
     protected boolean isFinished() {
         return true;
     }
 
     @Override
-    protected void end()  {
+    protected void end() {
 
     }
 }

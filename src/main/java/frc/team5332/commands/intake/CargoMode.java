@@ -8,14 +8,14 @@ import frc.team5332.subsystems.Intake;
 public class CargoMode extends CommandGroup {
 
     public CargoMode() {
-        addSequential(new ChangeHoodState(DoubleSolenoid.Value.kForward));
-        addSequential(new ChangeRollerIntakeState(DoubleSolenoid.Value.kReverse));
+        addSequential(new ChangeHoodState(false));
+        addSequential(new ChangeRollerIntakeState(true));
 
     }
 
     protected void execute() {
         CMap.intake.setCurrentState(Intake.State.CARGO);
-        CMap.rightbumper.whenPressed(new ChangeRollerIntakeState);
+        CMap.rightbumper.whileHeld(new IntakeCargo());
     }
 
 }

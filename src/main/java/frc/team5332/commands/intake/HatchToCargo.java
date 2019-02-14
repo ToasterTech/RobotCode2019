@@ -25,10 +25,7 @@ public class HatchToCargo extends Command {
     @Override
     protected void end() {
 
-
-
-
-
+    }
 
 
 
