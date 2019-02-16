@@ -15,7 +15,7 @@ public class IntakeCargo extends Command {
         //System.out.println(CMap.intake.getState());
         if(CMap.intake.getState() == Intake.State.CARGO) {
             if (checkedSwitch) {
-                CMap.intake.setRollerSpeed(-0.3);
+                CMap.intake.setRollerSpeed(-0.7);
             }
 
             if (CMap.intake.getLimitSwitch()) {
