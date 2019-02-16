@@ -1,18 +1,22 @@
-package frc.team5332.commands.drivetrain;
+package frc.team5332.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team5332.robot.CMap;
-import frc.team5332.subsystems.Drivetrain;
+import frc.team5332.subsystems.Elevator;
 
 public class SetElevator extends Command {
-    double distance;
+    double leftDistance , rightDistance;
 
-    public SetElevator(double distance) {
+    public SetElevator(double leftdist, double rightdist) {
+
+       leftDistance = leftdist;
+       rightDistance = rightdist;
 
 
     }
 
     protected void execute() {
+
 
     }
 

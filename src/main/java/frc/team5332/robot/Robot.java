@@ -63,6 +63,8 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
   }
 
+
+  private Compressor comp_ = new Compressor();
   @Override
   public void teleopInit(){
     Scheduler.getInstance().removeAll();
@@ -71,7 +73,7 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().add(new JoystickElevator());
     //Scheduler.getInstance().add(new TestMotor(8, 0.5));
 
-
+    comp_.clearAllPCMStickyFaults();
 
   }
 

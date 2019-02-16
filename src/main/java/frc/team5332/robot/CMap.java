@@ -79,7 +79,7 @@ public class CMap {
     public static JoystickButton operator10 = new JoystickButton(operatorStick, 10);
     public static void setupJoystickButtons() {
         leftbumper.whenPressed(new VisionAlign());
-
+        rightbumper.whenPressed(new ChangeGrabberState());
         operator6.whenPressed(new HatchMode());
         operator7.whenPressed(new CargoMode());
         operator8.whenPressed(new ResetIntake());

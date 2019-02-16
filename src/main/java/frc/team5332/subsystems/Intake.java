@@ -55,6 +55,7 @@ public class    Intake extends Subsystem {
         boolean currentstate = hatchGrabber.get();
         System.out.println("Previous Setting: " + currentstate);
         hatchGrabber.set(!currentstate);
+        System.out.println("New Setting: " + hatchGrabber.get());
     }
 
     public void changeHatchGrabberState(boolean newValue){
