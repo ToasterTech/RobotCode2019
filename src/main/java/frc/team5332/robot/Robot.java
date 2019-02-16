@@ -31,10 +31,6 @@ public class Robot extends TimedRobot {
     CMap.setupJoystickButtons();
     CMap.setupNetworkTables();
 
-    compressor = new Compressor();
-    compressor.setClosedLoopControl(true);
-    compressor.start();
-
     CameraServer cameraServer = CameraServer.getInstance();
     HttpCamera jetsonCamera = new HttpCamera("outputStreamServer", "http://10.53.32.12:5800/?action=stream");
     cameraServer.startAutomaticCapture(jetsonCamera);
@@ -69,12 +65,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit(){
-    compressor.start();
     Scheduler.getInstance().removeAll();
     //Scheduler.getInstance().add(new AngleDrivePivot(23.64375/2));
     Scheduler.getInstance().add(new JoystickDrive());
     Scheduler.getInstance().add(new JoystickElevator());
     //Scheduler.getInstance().add(new TestMotor(8, 0.5));
+
+
 
   }
 
@@ -85,7 +82,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    CMap.drivetrain.printEncoderOutputs();
+    //CMap.drivetrain.printEncoderOutputs();
+    ///System.out.println(CMap.intake.getLimitSwitch());
   }
 
 

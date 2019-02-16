@@ -1,10 +1,7 @@
 package frc.team5332.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Solenoid;
 import frc.team5332.robot.CMap;
 
 public class    Intake extends Subsystem {
@@ -12,7 +9,7 @@ public class    Intake extends Subsystem {
     Solenoid rollerPistons;
     Solenoid hatchGrabber;
 
-    SpeedControllerGroup cargoRollers;
+    VictorSP cargoRollers;
 
     DigitalInput limitSwitch;
 
@@ -25,8 +22,10 @@ public class    Intake extends Subsystem {
     }
 
     public Intake(){
-        //limitSwitch = new DigitalInput(CMap.limitSwitch);
+        limitSwitch = new DigitalInput(CMap.limitSwitch);
+        cargoRollers = new VictorSP(CMap.intakeMotor1);
         currentState = State.RESET;
+
 
         hoodPistons = new Solenoid(CMap.hoodSolenoid);
         rollerPistons = new Solenoid(CMap.rollerSolenoid);
@@ -40,11 +39,9 @@ public class    Intake extends Subsystem {
 
     public void changeHoodState(){
         boolean currentstate = hoodPistons.get();
-        if (currentstate) {
-            hoodPistons.set(false);
-        } else {
-            hoodPistons.set(true);
-        }
+        System.out.println("Old Hood: " + currentstate);
+        hoodPistons.set(!currentstate);
+        System.out.println("New Hood: " + currentstate);
 
 
     }
@@ -54,12 +51,10 @@ public class    Intake extends Subsystem {
     }
 
     public void changeHatchGrabberState(){
-        boolean currentstate = hoodPistons.get();
-        if (currentstate) {
-            hatchGrabber.set(false);
-        } else {
-            hatchGrabber.set(true);
-        }
+        System.out.println("Change Hatch Grabber");
+        boolean currentstate = hatchGrabber.get();
+        System.out.println("Previous Setting: " + currentstate);
+        hatchGrabber.set(!currentstate);
     }
 
     public void changeHatchGrabberState(boolean newValue){
@@ -67,13 +62,13 @@ public class    Intake extends Subsystem {
     }
 
     public void changeRollerIntakeState(){
-        boolean currentstate = hoodPistons.get();
-        if (currentstate) {
-            rollerPistons.set(false);
-        } else {
-            rollerPistons.set(true);
-        }
+        boolean currentstate = rollerPistons.get();
+        rollerPistons.set(!currentstate);
 
+    }
+
+    public void stopMotors(){
+        cargoRollers.stopMotor();
     }
 
     public State getState(){

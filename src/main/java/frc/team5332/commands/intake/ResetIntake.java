@@ -10,6 +10,7 @@ public class ResetIntake extends CommandGroup {
     public ResetIntake() {
         addSequential(new ChangeHoodState(false));
         addSequential(new ChangeRollerIntakeState(false));
+        addSequential(new ChangeGrabberState(false));
 
     }
 
