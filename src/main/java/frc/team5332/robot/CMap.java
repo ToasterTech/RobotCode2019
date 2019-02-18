@@ -54,7 +54,6 @@ public class CMap {
     public static int rightDriveEncoderA = 2;
     public static int rightDriveEncoderB = 3;
     public static int limitSwitch = 4;
-
     // Pneumatics
     public static int hatchGrabberSolenoid = 1;
     public static int hoodSolenoid = 0;
@@ -67,7 +66,7 @@ public class CMap {
     // Buttons
     public static JoystickButton greenbutton = new JoystickButton(gamepad,1);
     public static JoystickButton leftbumper = new JoystickButton(gamepad,5);
-    public static JoystickButton rightbumper = new JoystickButton(gamepad,6);
+    public static JoystickButton rightbumper = new JoystickButton(gamepad,4);
     public static JoystickButton bluebutton = new JoystickButton(gamepad,2);
     public static JoystickButton yellowbutton = new JoystickButton(gamepad,3);
 
@@ -84,7 +83,9 @@ public class CMap {
         operator7.whenPressed(new CargoMode());
         operator8.whenPressed(new ResetIntake());
         operator9.whileHeld(new ExpelCargo());
+
     }
+
 
 
     public static void setupNetworkTables(){

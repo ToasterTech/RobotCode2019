@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.team5332.commands.autonomous.TestMotor;
 import frc.team5332.commands.drivetrain.AngleDrivePivot;
+import frc.team5332.commands.drivetrain.DistanceDrive;
 import frc.team5332.commands.drivetrain.JoystickDrive;
 import frc.team5332.commands.elevator.JoystickElevator;
 import frc.team5332.commands.vision.ShutdownJetson;
@@ -67,10 +68,11 @@ public class Robot extends TimedRobot {
   private Compressor comp_ = new Compressor();
   @Override
   public void teleopInit(){
-    Scheduler.getInstance().removeAll();
-    //Scheduler.getInstance().add(new AngleDrivePivot(23.64375/2));
-    Scheduler.getInstance().add(new JoystickDrive());
-    Scheduler.getInstance().add(new JoystickElevator());
+   Scheduler.getInstance().removeAll();
+   Scheduler.getInstance().add(new JoystickDrive());
+   Scheduler.getInstance().add(new JoystickElevator());
+   Scheduler.getInstance().add(new DistanceDrive(2*Math.PI*3,2*Math.PI*3 ));
+   // Scheduler.getInstance().add(new AngleDrivePivot(23.64375/2));
     //Scheduler.getInstance().add(new TestMotor(8, 0.5));
 
     comp_.clearAllPCMStickyFaults();
@@ -85,7 +87,7 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
 
     //CMap.drivetrain.printEncoderOutputs();
-    ///System.out.println(CMap.intake.getLimitSwitch());
+    //System.out.println(CMap.intake.getLimitSwitch());
   }
 
 
