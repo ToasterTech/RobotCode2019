@@ -85,7 +85,7 @@ public class CMap {
         operator7.whenPressed(new CargoMode());
         operator8.whenPressed(new ResetIntake());
         operator9.whileHeld(new ExpelCargo());
-        operator10.whileHeld(new IntakeCargo());
+        operator10.whenPressed(new DayToNight());
 
     }
 
