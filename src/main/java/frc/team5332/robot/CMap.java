@@ -11,6 +11,7 @@ import frc.team5332.commands.vision.VisionAlign;
 import frc.team5332.subsystems.Drivetrain;
 import frc.team5332.subsystems.Elevator;
 import frc.team5332.subsystems.Intake;
+import frc.team5332.subsystems.Jetson;
 
 public class CMap {
 
@@ -49,10 +50,10 @@ public class CMap {
 
 
     // DIO
-    public static int leftDriveEncoderA = 0;
-    public static int leftDriveEncoderB = 1;
-    public static int rightDriveEncoderA = 2;
-    public static int rightDriveEncoderB = 3;
+    public static int rightDriveEncoderA = 0;
+    public static int rightDriveEncoderB = 1;
+    public static int leftDriveEncoderA = 2;
+    public static int leftDriveEncoderB = 3;
     public static int limitSwitch = 4;
     // Pneumatics
     public static int hatchGrabberSolenoid = 1;
@@ -63,10 +64,11 @@ public class CMap {
     public static Intake intake = new Intake();
     public static Drivetrain drivetrain = new Drivetrain();
     public static Elevator elevator = new Elevator();
+    public static Jetson jetson = new Jetson();
     // Buttons
     public static JoystickButton greenbutton = new JoystickButton(gamepad,1);
     public static JoystickButton leftbumper = new JoystickButton(gamepad,5);
-    public static JoystickButton rightbumper = new JoystickButton(gamepad,4);
+    public static JoystickButton rightbumper = new JoystickButton(gamepad,6);
     public static JoystickButton bluebutton = new JoystickButton(gamepad,2);
     public static JoystickButton yellowbutton = new JoystickButton(gamepad,3);
 
@@ -78,11 +80,12 @@ public class CMap {
     public static JoystickButton operator10 = new JoystickButton(operatorStick, 10);
     public static void setupJoystickButtons() {
         leftbumper.whenPressed(new VisionAlign());
-        rightbumper.whenPressed(new ChangeGrabberState());
+        rightbumper.whileHeld(new IntakeCargo());
         operator6.whenPressed(new HatchMode());
         operator7.whenPressed(new CargoMode());
         operator8.whenPressed(new ResetIntake());
         operator9.whileHeld(new ExpelCargo());
+        operator10.whileHeld(new IntakeCargo());
 
     }
 

@@ -15,8 +15,9 @@ public class CargoMode extends CommandGroup {
     }
 
     protected void execute() {
+        System.out.println("Cargo");
         CMap.intake.setCurrentState(Intake.State.CARGO);
-        CMap.rightbumper.whenPressed(new IntakeCargo());
+        CMap.rightbumper.whileHeld(new IntakeCargo());
     }
 
 }

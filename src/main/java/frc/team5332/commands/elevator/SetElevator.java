@@ -21,7 +21,7 @@ public class SetElevator extends Command {
     }
 
     protected boolean isFinished() {
-        return CMap.drivetrain.PIDFinished();
+        return false;
     }
 
     protected void end() {
