@@ -17,7 +17,7 @@ public class Elevator extends Subsystem {
     public Elevator(){
         //We will add the elevator motor ports when we get there.
         flippedElevatorMotor = new VictorSP(CMap.elevatorWenchMotor2);
-        flippedElevatorMotor.setInverted(true);
+        flippedElevatorMotor.setInverted(false);
 
         elevatorMotors = new SpeedControllerGroup(flippedElevatorMotor, new VictorSP(CMap.elevatorWenchMotor1));
 

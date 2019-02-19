@@ -66,7 +66,7 @@ public class CMap {
     // Buttons
     public static JoystickButton greenbutton = new JoystickButton(gamepad,1);
     public static JoystickButton leftbumper = new JoystickButton(gamepad,5);
-    public static JoystickButton rightbumper = new JoystickButton(gamepad,4);
+    public static JoystickButton rightbumper = new JoystickButton(gamepad,6);
     public static JoystickButton bluebutton = new JoystickButton(gamepad,2);
     public static JoystickButton yellowbutton = new JoystickButton(gamepad,3);
 
@@ -78,7 +78,7 @@ public class CMap {
     public static JoystickButton operator10 = new JoystickButton(operatorStick, 10);
     public static void setupJoystickButtons() {
         leftbumper.whenPressed(new VisionAlign());
-        rightbumper.whenPressed(new ChangeGrabberState());
+        //rightbumper.whenPressed(new ChangeGrabberState());
         operator6.whenPressed(new HatchMode());
         operator7.whenPressed(new CargoMode());
         operator8.whenPressed(new ResetIntake());
