@@ -8,9 +8,9 @@ import frc.team5332.subsystems.Intake;
 public class ResetIntake extends CommandGroup {
 
     public ResetIntake() {
-        addSequential(new ChangeHoodState(false));
-        addSequential(new ChangeRollerIntakeState(false));
         addSequential(new ChangeGrabberState(false));
+        addSequential(new ChangeRollerIntakeState(false));
+        addSequential(new ChangeHoodState(false));
 
     }
 

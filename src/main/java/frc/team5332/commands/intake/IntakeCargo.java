@@ -12,7 +12,7 @@ public class IntakeCargo extends Command {
 
     @Override
     protected void execute() {
-        //System.out.println(CMap.intake.getState());
+        System.out.println(CMap.intake.getState());
         if(CMap.intake.getState() == Intake.State.CARGO) {
             if (checkedSwitch) {
                 CMap.intake.setRollerSpeed(-0.5);
@@ -27,7 +27,7 @@ public class IntakeCargo extends Command {
 
     @Override
     protected boolean isFinished() {
-        //System.out.println(CMap.intake.getLimitSwitch());
+        System.out.println(CMap.intake.getLimitSwitch());
         checkedSwitch = true;
         return CMap.intake.getLimitSwitch();
 

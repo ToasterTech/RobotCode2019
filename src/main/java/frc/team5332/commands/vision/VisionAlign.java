@@ -23,26 +23,13 @@ public class VisionAlign extends Command {
 
     @Override
     protected void execute() {
-        if(!valueGrabbed){
-            visionAngle = CMap.visionTable.getEntry("Angle").getDouble(0);
-            visionAngle = visionAngle / 2.0;
-
-
-            valueGrabbed = true;
-            CMap.visionAlignmentInProgress = true;
-            wheeldistance = (2 * Math.PI * distancebetweenwheels * visionAngle) / (360.0*4);
-
-
-            System.out.println("Vision Angle: " + visionAngle);
-            System.out.println("Wheel Distance: " + wheeldistance);
-        }
-
-        CMap.drivetrain.setLeftSetpoint(wheeldistance);
+        CMap.drivetrain.enable();
+        CMap.drivetrain.setSetpoint(0);
     }
 
     @Override
     protected boolean isFinished() {
-        return CMap.drivetrain.PIDFinished();
+        return CMap.drivetrain.onTarget();
     }
 
     @Override
@@ -52,7 +39,7 @@ public class VisionAlign extends Command {
         valueGrabbed = false;
         CMap.visionAlignmentInProgress = false;
 
-        CMap.drivetrain.disablePID();
+        CMap.drivetrain.disable();
 
     }
 }
