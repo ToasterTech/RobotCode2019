@@ -18,11 +18,11 @@ public class ListenForJetsonConnection extends Command {
 
     @Override
     protected boolean isFinished() {
-        return CMap.jetsonConnected.getBoolean(false);
+        return CMap.jetsonOnline.getBoolean(false);
     }
 
     @Override
     protected void end() {
-        DriverStation.reportWarning("Jetson is Connected", false);
+        DriverStation.reportWarning("Jetson Online", false);
     }
 }

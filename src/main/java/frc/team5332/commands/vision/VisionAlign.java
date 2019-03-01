@@ -14,8 +14,6 @@ public class VisionAlign extends Command {
     double visionAngle;
     boolean valueGrabbed = false;
 
-    double wheeldistance;
-    double distancebetweenwheels=25;
 
     public VisionAlign() {
 
@@ -23,8 +21,15 @@ public class VisionAlign extends Command {
 
     @Override
     protected void execute() {
-        CMap.drivetrain.enable();
-        CMap.drivetrain.setSetpoint(0);
+        if(!valueGrabbed){
+            CMap.drivetrain.enable();
+            visionAngle = CMap.angle.getDouble(0);
+            CMap.drivetrain.setSetpointRelative(visionAngle);
+            valueGrabbed = true;
+        }
+
+        CMap.visionAlignmentInProgress = true;
+
     }
 
     @Override

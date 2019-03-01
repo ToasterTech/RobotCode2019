@@ -23,7 +23,7 @@ public class CMap {
     public static NetworkTableEntry angle;
     public static NetworkTableEntry targetAcquired;
     public static NetworkTableEntry shutdownJetson;
-    public static NetworkTableEntry jetsonConnected;
+    public static NetworkTableEntry jetsonOnline;
     public static NetworkTableEntry visionMode;
     public static NetworkTableEntry switchVisionMode;
     public static NetworkTableEntry switchIntakeMode;
@@ -89,12 +89,14 @@ public class CMap {
     }
         public static void setupNetworkTables(){
             mainInstance = NetworkTableInstance.getDefault();
+
             visionTable = mainInstance.getTable("vision_table");
 
             visionMode = visionTable.getEntry("visionMode");
+            jetsonOnline = visionTable.getEntry("JetsonOnline");
 
             angle = visionTable.getEntry("Angle");
-            shutdownJetson = visionTable.getEntry("shutdownJetson");
+            shutdownJetson = visionTable.getEntry("Shutdown");
 
 
         }

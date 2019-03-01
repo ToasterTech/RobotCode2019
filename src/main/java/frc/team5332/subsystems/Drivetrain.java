@@ -1,5 +1,6 @@
 package frc.team5332.subsystems;
 
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -10,13 +11,7 @@ public class Drivetrain extends PIDSubsystem {
 
     SpeedControllerGroup leftMotors, rightMotors;
 
-    public enum PIDMode{
-        VISION,
-        ANGLE,
-        NONE
-    }
-
-    PIDMode currentMode;
+    AHRS gyro;
 
 
     public Drivetrain(){
@@ -34,7 +29,8 @@ public class Drivetrain extends PIDSubsystem {
 
         rightMotors.setInverted(true);
 
-        currentMode = PIDMode.NONE;
+        gyro = new AHRS(SerialPort.Port.kUSB);
+
     }
 
     @Override
@@ -42,19 +38,22 @@ public class Drivetrain extends PIDSubsystem {
 
     }
 
+
     public void setTankDrive(double leftspeed, double rightspeed){
         leftMotors.set(leftspeed);
         rightMotors.set(rightspeed);
     }
 
+
+
     @Override
     protected double returnPIDInput() {
-        return CMap.jetson.pidGet();
+        return gyro.getAngle();
     }
 
     @Override
     protected void usePIDOutput(double output) {
-        setTankDrive(output, -output);
+        setTankDrive(-output, output);
     }
 
 

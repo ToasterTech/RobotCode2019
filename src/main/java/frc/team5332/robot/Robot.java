@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.team5332.commands.drivetrain.JoystickDrive;
 import frc.team5332.commands.elevator.JoystickElevator;
+import frc.team5332.commands.vision.ListenForJetsonConnection;
 import frc.team5332.commands.vision.ShutdownJetson;
 
 import java.beans.Encoder;
@@ -32,7 +33,7 @@ public class Robot extends TimedRobot {
     CMap.setupNetworkTables();
 
     CameraServer cameraServer = CameraServer.getInstance();
-    HttpCamera jetsonCamera = new HttpCamera("outputStreamServer", "http://10.53.32.12:5800/?action=stream");
+    HttpCamera jetsonCamera = new HttpCamera("outputStreamServer", "http://tegra-ubuntu.local:5800/stream.mjpg?compression=10");
     cameraServer.startAutomaticCapture(jetsonCamera);
   }
 
@@ -70,9 +71,6 @@ public class Robot extends TimedRobot {
    Scheduler.getInstance().removeAll();
    Scheduler.getInstance().add(new JoystickDrive());
    Scheduler.getInstance().add(new JoystickElevator());
-   //Scheduler.getInstance().add(new DistanceDrive(2*Math.PI*3,2*Math.PI*3 ));
-   // Scheduler.getInstance().add(new AngleDrivePivot(23.64375/2));
-    //Scheduler.getInstance().add(new TestMotor(8, 0.5));
 
     comp_.clearAllPCMStickyFaults();
 
@@ -93,7 +91,14 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().removeAll();
     if(DriverStation.getInstance().isFMSAttached() && CMap.teleopExecuted){
       Scheduler.getInstance().add(new ShutdownJetson());
+    } else {
+      Scheduler.getInstance().add(new ListenForJetsonConnection());
     }
+  }
+
+  @Override
+  public void disabledPeriodic() {
+    Scheduler.getInstance().run();
   }
 
   /**
