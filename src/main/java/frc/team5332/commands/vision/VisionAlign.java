@@ -34,7 +34,7 @@ public class VisionAlign extends Command {
 
     @Override
     protected boolean isFinished() {
-        return CMap.drivetrain.onTarget();
+        return CMap.drivetrain.onTarget() && CMap.angle.getDouble(0) < 5;
     }
 
     @Override
