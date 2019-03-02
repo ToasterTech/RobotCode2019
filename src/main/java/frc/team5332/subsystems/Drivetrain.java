@@ -29,7 +29,7 @@ public class Drivetrain extends PIDSubsystem {
 
         rightMotors.setInverted(true);
 
-        gyro = new AHRS(SPI.Port.kMXP);
+        gyro = new AHRS(SerialPort.Port.kUSB);
 
     }
 
