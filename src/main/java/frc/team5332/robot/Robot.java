@@ -70,8 +70,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit(){
    Scheduler.getInstance().removeAll();
-   //Scheduler.getInstance().add(new JoystickDrive());
-   //Scheduler.getInstance().add(new JoystickElevator());
+   Scheduler.getInstance().add(new JoystickDrive());
+   Scheduler.getInstance().add(new JoystickElevator());
 
     comp_.clearAllPCMStickyFaults();
 
@@ -83,7 +83,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
       System.out.println(CMap.drivetrain.getAngle());
-    //Scheduler.getInstance().run();
+    Scheduler.getInstance().run();
     //System.out.println(CMap.intake.getLimitSwitch());
   }
 

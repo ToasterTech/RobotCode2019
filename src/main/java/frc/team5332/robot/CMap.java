@@ -24,6 +24,7 @@ public class CMap {
     public static NetworkTableEntry targetAcquired;
     public static NetworkTableEntry shutdownJetson;
     public static NetworkTableEntry jetsonOnline;
+    public static NetworkTableEntry cameraRunning;
     public static NetworkTableEntry visionMode;
     public static NetworkTableEntry switchVisionMode;
     public static NetworkTableEntry switchIntakeMode;
@@ -60,9 +61,9 @@ public class CMap {
     public static int rollerSolenoid = 2;
 
     // Subsystems
-    public static Intake intake;// = new Intake();
+    public static Intake intake = new Intake();
     public static Drivetrain drivetrain = new Drivetrain();
-    public static Elevator elevator;// = new Elevator();
+    public static Elevator elevator = new Elevator();
     public static Jetson jetson = new Jetson();
     // Buttons
     public static JoystickButton greenbutton = new JoystickButton(gamepad, 1);
@@ -96,6 +97,7 @@ public class CMap {
 
             visionMode = visionTable.getEntry("visionMode");
             jetsonOnline = visionTable.getEntry("JetsonOnline");
+            cameraRunning = visionTable.getEntry("CameraRunning");
 
             angle = visionTable.getEntry("Angle");
             shutdownJetson = visionTable.getEntry("Shutdown");
