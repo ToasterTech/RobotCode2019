@@ -22,7 +22,7 @@ public class IntakeCargo extends Command {
                 System.out.println("Limit Switch True");
             }
         }
-
+ 
     }
 
     @Override
