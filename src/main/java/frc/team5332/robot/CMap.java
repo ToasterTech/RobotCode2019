@@ -60,9 +60,9 @@ public class CMap {
     public static int rollerSolenoid = 2;
 
     // Subsystems
-    public static Intake intake = new Intake();
+    public static Intake intake;// = new Intake();
     public static Drivetrain drivetrain = new Drivetrain();
-    public static Elevator elevator = new Elevator();
+    public static Elevator elevator;// = new Elevator();
     public static Jetson jetson = new Jetson();
     // Buttons
     public static JoystickButton greenbutton = new JoystickButton(gamepad, 1);
@@ -76,6 +76,7 @@ public class CMap {
     public static JoystickButton operator5 = new JoystickButton(operatorStick, 5);
     public static JoystickButton operator8 = new JoystickButton(operatorStick, 8);
     public static JoystickButton operator9 = new JoystickButton(operatorStick, 9);
+    public static JoystickButton operator10 = new JoystickButton(operatorStick, 10);
     public static JoystickButton operator1 = new JoystickButton(operatorStick,1);
 
     public static void setupJoystickButtons() {
@@ -85,6 +86,7 @@ public class CMap {
         operator5.whenPressed(new CargoMode());
         operator8.whenPressed(new ResetIntake());
         operator1.whileHeld(new ExpelCargo());
+        operator10.whileHeld(new DayToNight());
 
     }
         public static void setupNetworkTables(){

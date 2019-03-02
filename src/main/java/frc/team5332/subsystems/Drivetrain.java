@@ -29,7 +29,7 @@ public class Drivetrain extends PIDSubsystem {
 
         rightMotors.setInverted(true);
 
-        gyro = new AHRS(SerialPort.Port.kUSB);
+        gyro = new AHRS(SPI.Port.kMXP);
 
     }
 
@@ -54,6 +54,10 @@ public class Drivetrain extends PIDSubsystem {
     @Override
     protected void usePIDOutput(double output) {
         setTankDrive(-output, output);
+    }
+
+    public double getAngle(){
+        return gyro.getAngle();
     }
 
 
