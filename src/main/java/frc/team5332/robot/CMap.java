@@ -5,6 +5,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team5332.commands.drivetrain.DriveStraight;
 import frc.team5332.commands.intake.*;
 import frc.team5332.commands.vision.DayToNight;
 import frc.team5332.commands.vision.VisionAlign;
@@ -94,13 +95,11 @@ public class CMap {
         operator5.whenPressed(new CargoMode());
         operator8.whenPressed(new ResetIntake());
         operator1.whileHeld(new ExpelCargo());
-        //operator10.whileHeld(new DayToNight());
-
+        operator10.whileHeld(new DayToNight());
+        greenbutton.whileHeld(new DriveStraight());
     }
         public static void setupNetworkTables(){
             mainInstance = NetworkTableInstance.getDefault();
-
-
 
             visionTable = mainInstance.getTable("vision_table");
 
