@@ -22,7 +22,7 @@ public class    Intake extends Subsystem {
     }
 
     public Intake(){
-        limitSwitch = new DigitalInput(CMap.limitSwitch);
+        limitSwitch = new DigitalInput(CMap.intakeLimitSwitch);
         cargoRollers = new VictorSP(CMap.intakeMotor1);
         currentState = State.RESET;
 

@@ -13,7 +13,7 @@ public class ListenForJetsonConnection extends Command {
 
     @Override
     protected void execute() {
-
+        System.out.println("Listening");
     }
 
     @Override

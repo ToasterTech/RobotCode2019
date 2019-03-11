@@ -6,8 +6,11 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.team5332.commands.drivetrain.AngleDrivePivot;
+import frc.team5332.commands.drivetrain.AngleDriveTank;
 import frc.team5332.commands.drivetrain.JoystickDrive;
 import frc.team5332.commands.elevator.JoystickElevator;
+import frc.team5332.commands.elevator.SetElevator;
 import frc.team5332.commands.vision.ListenForJetsonConnection;
 import frc.team5332.commands.vision.ShutdownJetson;
 
@@ -33,8 +36,10 @@ public class Robot extends TimedRobot {
     CMap.setupNetworkTables();
 
     CameraServer cameraServer = CameraServer.getInstance();
-    HttpCamera jetsonCamera = new HttpCamera("outputStreamServer", "http://tegra-ubuntu.local:5800/stream.mjpg?compression=10");
-    cameraServer.startAutomaticCapture(jetsonCamera);
+    cameraServer.startAutomaticCapture(0);
+
+    //HttpCamera jetsonCamera = new HttpCamera("outputStreamServer", "http://tegra-ubuntu.local:5800/stream.mjpg?compression=10");
+    //cameraServer.startAutomaticCapture(jetsonCamera);
   }
 
   /**
@@ -72,7 +77,8 @@ public class Robot extends TimedRobot {
    Scheduler.getInstance().removeAll();
    Scheduler.getInstance().add(new JoystickDrive());
    Scheduler.getInstance().add(new JoystickElevator());
-
+   //Scheduler.getInstance().add(new SetElevator(8.5));
+   // Scheduler.getInstance().add(new AngleDriveTank(90));
     comp_.clearAllPCMStickyFaults();
 
   }
@@ -82,7 +88,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-      System.out.println(CMap.drivetrain.getAngle());
+      //System.out.println(CMap.drivetrain.getAngle());
+      CMap.elevator.printEncoderOutputs();
     Scheduler.getInstance().run();
     //System.out.println(CMap.intake.getLimitSwitch());
   }
@@ -90,16 +97,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
-    Scheduler.getInstance().removeAll();
-    if(DriverStation.getInstance().isFMSAttached() && CMap.teleopExecuted){
-      Scheduler.getInstance().add(new ShutdownJetson());
-    } else {
-      Scheduler.getInstance().add(new ListenForJetsonConnection());
-    }
+
   }
 
   @Override
   public void disabledPeriodic() {
+
+    //System.out.println("Listener Running");
     Scheduler.getInstance().run();
   }
 

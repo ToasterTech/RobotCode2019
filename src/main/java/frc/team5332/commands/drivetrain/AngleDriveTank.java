@@ -12,6 +12,7 @@ public class AngleDriveTank extends Command {
 
     }
     protected void execute() {
+        CMap.drivetrain.enable();
         CMap.drivetrain.setSetpointRelative(angle);
     }
     protected boolean isFinished() {

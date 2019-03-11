@@ -3,16 +3,16 @@ package frc.team5332.commands.intake;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team5332.robot.CMap;
 
-public class ExpelCargo extends Command {
+public class ExpelCargoBottom extends Command {
 
-    public ExpelCargo(){
+    public ExpelCargoBottom(){
 
     }
 
     @Override
     protected void execute() {
-        System.out.println("Expel Cargo Mode");
-        CMap.intake.setRollerSpeed(-1.0);
+        System.out.println("Expel Cargo Bottom Mode");
+        CMap.intake.setRollerSpeed(1.0);
     }
 
     @Override

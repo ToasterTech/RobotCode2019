@@ -16,6 +16,7 @@ public class Drivetrain extends PIDSubsystem {
 
     public Drivetrain(){
         super(0.2, 0, 0);
+        setAbsoluteTolerance(0.5);
 
         leftMotor1  = new PWMTalonSRX(CMap.leftDriveMotor1);
         leftmotor2  = new PWMTalonSRX(CMap.leftDriveMotor2);
@@ -29,7 +30,7 @@ public class Drivetrain extends PIDSubsystem {
 
         rightMotors.setInverted(true);
 
-        gyro = new AHRS(SerialPort.Port.kUSB);
+        //gyro = new AHRS(SerialPort.Port.kUSB);
 
     }
 

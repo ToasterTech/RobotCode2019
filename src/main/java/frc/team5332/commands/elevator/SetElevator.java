@@ -5,28 +5,33 @@ import frc.team5332.robot.CMap;
 import frc.team5332.subsystems.Elevator;
 
 public class SetElevator extends Command {
-    double leftDistance , rightDistance;
+    double setpoint;
 
-    public SetElevator(double leftdist, double rightdist) {
+    boolean enabled = false;
 
-       leftDistance = leftdist;
-       rightDistance = rightdist;
+    public SetElevator(double setpoint) {
+
+       this.setpoint = setpoint;
 
 
     }
 
     protected void execute() {
-
+        if(!enabled) {
+            CMap.elevator.enable();
+            enabled = true;
+        }
+        CMap.elevator.setSetpoint(setpoint);
 
     }
 
     protected boolean isFinished() {
-        return false;
+        return CMap.elevator.onTarget();
     }
 
     protected void end() {
 
-
+        enabled = false;
     }
 
 }
