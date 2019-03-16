@@ -1,7 +1,10 @@
 package frc.team5332.commands.elevator;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team5332.robot.CMap;
+
+import java.awt.*;
 
 public class JoystickElevator extends Command {
 
@@ -12,9 +15,9 @@ public class JoystickElevator extends Command {
     @Override
     protected void execute() {
 
-        System.out.println(CMap.elevator.getElevatorLimitSwitch());
+        System.out.println(CMap.elevator.getElevatorTopLimitSwitch());
 
-        if(CMap.elevator.getElevatorLimitSwitch() && (CMap.operatorStick.getY() > 0)){
+        if (CMap.elevator.getElevatorTopLimitSwitch() && (CMap.operatorStick.getY() > 0)) {
             System.out.println("Running Limit Switch Code");
             CMap.elevator.setElevatorSpeed(0);
         } else {
@@ -23,7 +26,23 @@ public class JoystickElevator extends Command {
         }
 
         //CMap.elevator.setElevatorSpeed(CMap.operatorStick.getY());
+        
+        //CMap.elevator.setElevatorSpeed(CMap.operatorStick.getY());
+
+
+        if(CMap.elevator.getElevatorBottomLimitSwitch()){
+            CMap.elevator.resetencoder();
+        }
+
+
+
     }
+
+
+
+
+
+
 
 
 
@@ -37,6 +56,7 @@ public class JoystickElevator extends Command {
 
     @Override
     protected void end() {
+
 
     }
 }

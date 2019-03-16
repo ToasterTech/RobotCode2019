@@ -5,12 +5,15 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team5332.robot.CMap;
 
+import java.security.PublicKey;
+
 public class Elevator extends PIDSubsystem {
     VictorSP flippedElevatorMotor;
     SpeedControllerGroup elevatorMotors;
     PIDController elevatorPIDController;
 
     DigitalInput elevatorTopLimitSwitch;
+    DigitalInput elevatorBottomLimitSwitch;
 
     Encoder elevatorEncoder;
 
@@ -27,7 +30,7 @@ public class Elevator extends PIDSubsystem {
         elevatorEncoder.setDistancePerPulse(27.75/(1090));
 
         elevatorTopLimitSwitch = new DigitalInput(CMap.elevatorTopLimitSwitch);
-
+        elevatorBottomLimitSwitch = new DigitalInput(CMap.elevatorBottomLimitSwitch);
 
         elevatorMotors = new SpeedControllerGroup(new VictorSP(CMap.elevatorWenchMotor1), flippedElevatorMotor);
         setOutputRange(-.7, .7);
@@ -55,7 +58,7 @@ public class Elevator extends PIDSubsystem {
     }
 
     @Override
-    protected void usePIDOutput(double output) {
+    protected void usePIDOutput(double output){
         setElevatorSpeed(-output);
     }
 
@@ -63,8 +66,17 @@ public class Elevator extends PIDSubsystem {
         elevatorMotors.set(speed);
     }
 
-    public boolean getElevatorLimitSwitch(){
+    public boolean getElevatorTopLimitSwitch(){
         return elevatorTopLimitSwitch.get();
+
+    }
+
+    public boolean getElevatorBottomLimitSwitch(){
+        return elevatorBottomLimitSwitch.get();
+    }
+
+    public void resetencoder(){
+        elevatorEncoder.reset();
     }
 
     public void printEncoderOutputs(){

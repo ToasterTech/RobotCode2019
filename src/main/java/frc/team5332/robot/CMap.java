@@ -61,6 +61,7 @@ public class CMap {
     public static int elevatorEncoderB = 6;
     public static int intakeLimitSwitch = 4;
     public static int elevatorTopLimitSwitch = 8;
+    public static int elevatorBottomLimitSwitch = 9;
     // Pneumatics
     public static int hatchGrabberSolenoid = 1;
     public static int hoodSolenoid = 0;
