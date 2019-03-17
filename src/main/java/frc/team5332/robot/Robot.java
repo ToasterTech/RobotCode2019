@@ -10,6 +10,7 @@ import frc.team5332.commands.drivetrain.AngleDrivePivot;
 import frc.team5332.commands.drivetrain.AngleDriveTank;
 import frc.team5332.commands.drivetrain.JoystickDrive;
 import frc.team5332.commands.elevator.JoystickElevator;
+import frc.team5332.commands.elevator.MonitorEncoder;
 import frc.team5332.commands.elevator.SetElevator;
 import frc.team5332.commands.vision.ListenForJetsonConnection;
 import frc.team5332.commands.vision.ShutdownJetson;
@@ -60,6 +61,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     Scheduler.getInstance().add(new JoystickDrive());
     Scheduler.getInstance().add(new JoystickElevator());
+    Scheduler.getInstance().add(new MonitorEncoder());
   }
 
   /**
@@ -77,6 +79,7 @@ public class Robot extends TimedRobot {
    Scheduler.getInstance().removeAll();
    Scheduler.getInstance().add(new JoystickDrive());
    Scheduler.getInstance().add(new JoystickElevator());
+
    //Scheduler.getInstance().add(new SetElevator(8.5));
    // Scheduler.getInstance().add(new AngleDriveTank(90));
     comp_.clearAllPCMStickyFaults();

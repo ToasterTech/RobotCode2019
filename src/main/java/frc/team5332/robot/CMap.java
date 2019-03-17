@@ -80,23 +80,28 @@ public class CMap {
     public static JoystickButton yellowbutton = new JoystickButton(gamepad, 3);
 
 
+    public static JoystickButton operator1 = new JoystickButton(operatorStick,1);
+    public static JoystickButton operator2 = new JoystickButton(operatorStick, 2);
+
     public static JoystickButton operator3 = new JoystickButton(operatorStick, 3);
     public static JoystickButton operator4 = new JoystickButton(operatorStick, 4);
     public static JoystickButton operator5 = new JoystickButton(operatorStick, 5);
+    public static JoystickButton operator6 = new JoystickButton(operatorStick, 6);
+    public static JoystickButton operator7 = new JoystickButton(operatorStick, 7);
     public static JoystickButton operator8 = new JoystickButton(operatorStick, 8);
     public static JoystickButton operator9 = new JoystickButton(operatorStick, 9);
     public static JoystickButton operator10 = new JoystickButton(operatorStick, 10);
-    public static JoystickButton operator1 = new JoystickButton(operatorStick,1);
+
 
     public static void setupJoystickButtons() {
         //leftbumper.whenPressed(new VisionAlign());
         //rightbumper.whenPressed(new IntakeCargo());
+
         operator3.whileHeld(new ExpelCargoBottom());
         operator4.whenPressed(new HatchMode());
         operator5.whenPressed(new CargoMode());
         operator8.whenPressed(new ResetIntake());
         operator1.whileHeld(new ExpelCargo());
-        operator10.whileHeld(new DayToNight());
         greenbutton.whileHeld(new DriveStraight());
     }
         public static void setupNetworkTables(){

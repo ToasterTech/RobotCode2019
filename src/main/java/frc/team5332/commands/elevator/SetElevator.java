@@ -7,7 +7,6 @@ import frc.team5332.subsystems.Elevator;
 public class SetElevator extends Command {
     double setpoint;
 
-    boolean enabled = false;
 
     public SetElevator(double setpoint) {
 
@@ -17,21 +16,16 @@ public class SetElevator extends Command {
     }
 
     protected void execute() {
-        if(!enabled) {
-            CMap.elevator.enable();
-            enabled = true;
-        }
-        CMap.elevator.setSetpoint(setpoint);
+       CMap.elevator.setSetpoint(setpoint);
 
     }
 
     protected boolean isFinished() {
-        return CMap.elevator.onTarget();
+        return false;
     }
 
     protected void end() {
 
-        enabled = false;
     }
 
 }

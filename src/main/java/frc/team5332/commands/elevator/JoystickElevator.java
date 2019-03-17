@@ -7,6 +7,7 @@ import frc.team5332.robot.CMap;
 import java.awt.*;
 
 public class JoystickElevator extends Command {
+    boolean previouslyReset = false;
 
     public JoystickElevator(){
 
@@ -26,28 +27,15 @@ public class JoystickElevator extends Command {
         }
 
         //CMap.elevator.setElevatorSpeed(CMap.operatorStick.getY());
-        
+
         //CMap.elevator.setElevatorSpeed(CMap.operatorStick.getY());
 
 
-        if(CMap.elevator.getElevatorBottomLimitSwitch()){
-            CMap.elevator.resetencoder();
-        }
+
 
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
     @Override
     protected boolean isFinished() {

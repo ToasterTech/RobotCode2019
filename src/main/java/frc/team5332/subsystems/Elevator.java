@@ -17,9 +17,21 @@ public class Elevator extends PIDSubsystem {
 
     Encoder elevatorEncoder;
 
+    public boolean encoderInitiallyZeroed;
+
+
+    //Presets
+    public static final double ZERO = 0;
+    public static final double LOADING_STATION = 0;
+    public static final double CARGO_SHIP_SCORING = 0;
+    public static final double ROCKET_LEVEL_2_HATCH = 0;
+    public static final double ROCKET_LEVEL_3_HATCH = 0;
+    public static final double ROCKET_LEVEL_1_CARGO = 0;
+    public static final double ROCKET_LEVEL_2_CARGO = 0;
+    public static final double ROCKET_LEVEL_3_CARGO = 0;
+
     public Elevator(){
         super(0.2, 0, 0);
-        //disable();
         setAbsoluteTolerance(0.2);
 
         //We will add the elevator motor ports when we get there.
@@ -35,6 +47,9 @@ public class Elevator extends PIDSubsystem {
         elevatorMotors = new SpeedControllerGroup(new VictorSP(CMap.elevatorWenchMotor1), flippedElevatorMotor);
         setOutputRange(-.7, .7);
 
+        encoderInitiallyZeroed = false;
+
+        disable();
         //elevatorPIDController = new PIDController(0.5, 0, 0, opticalSensor, elevatorMotors);
         //elevatorPIDController.setAbsoluteTolerance(0.5);
 
@@ -48,8 +63,6 @@ public class Elevator extends PIDSubsystem {
     @Override
     public void enable() {
         super.enable();
-        elevatorEncoder.reset();
-        elevatorEncoder.reset();
     }
 
     @Override
@@ -64,6 +77,10 @@ public class Elevator extends PIDSubsystem {
 
     public void setElevatorSpeed(double speed){
         elevatorMotors.set(speed);
+    }
+
+    public double getElevatorSpeed(){
+        return elevatorMotors.get();
     }
 
     public boolean getElevatorTopLimitSwitch(){
