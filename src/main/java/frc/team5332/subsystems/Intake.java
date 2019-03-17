@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team5332.robot.CMap;
 
-public class    Intake extends Subsystem {
+public class  Intake extends Subsystem {
     Solenoid hoodPistons;
     Solenoid rollerPistons;
     Solenoid hatchGrabber;
