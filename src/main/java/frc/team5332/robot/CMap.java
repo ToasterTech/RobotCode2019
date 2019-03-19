@@ -5,6 +5,8 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team5332.commands.climber.ChangeBackPistonState;
+import frc.team5332.commands.climber.ChangeFrontPistonState;
 import frc.team5332.commands.drivetrain.DriveStraight;
 import frc.team5332.commands.intake.*;
 import frc.team5332.commands.vision.DayToNight;
@@ -73,6 +75,9 @@ public class CMap {
     public static Elevator elevator = new Elevator();
     public static Jetson jetson = new Jetson();
     public static Climber climber = new Climber();
+    public static ChangeFrontPistonState changeFrontPistonState = new ChangeFrontPistonState();
+    public static ChangeBackPistonState changeBackPistonState = new ChangeBackPistonState();
+
 
     // Buttons
     public static JoystickButton greenbutton = new JoystickButton(gamepad, 1);
@@ -105,6 +110,8 @@ public class CMap {
         operator8.whenPressed(new ResetIntake());
         operator1.whileHeld(new ExpelCargo());
         greenbutton.whileHeld(new DriveStraight());
+        bluebutton.whileHeld(new ChangeFrontPistonState());
+        greenbutton.whileHeld(new ChangeBackPistonState());
     }
         public static void setupNetworkTables(){
             mainInstance = NetworkTableInstance.getDefault();

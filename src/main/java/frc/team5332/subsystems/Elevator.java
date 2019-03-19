@@ -22,7 +22,7 @@ public class Elevator extends PIDSubsystem {
 
     //Presets
     public static final double ZERO = 0;
-    public static final double LOADING_STATION = 0;
+    public static final double LOADING_STATION = 0.2;
     public static final double CARGO_SHIP_SCORING = 0;
     public static final double ROCKET_LEVEL_2_HATCH = 0;
     public static final double ROCKET_LEVEL_3_HATCH = 0;
@@ -31,8 +31,8 @@ public class Elevator extends PIDSubsystem {
     public static final double ROCKET_LEVEL_3_CARGO = 0;
 
     public Elevator(){
-        super(0.2, 0, 0);
-        setAbsoluteTolerance(0.2);
+        super(1.2, 0, 0);
+        setAbsoluteTolerance(0.05);
 
         //We will add the elevator motor ports when we get there.
         flippedElevatorMotor = new VictorSP(CMap.elevatorWenchMotor2);
@@ -45,7 +45,7 @@ public class Elevator extends PIDSubsystem {
         elevatorBottomLimitSwitch = new DigitalInput(CMap.elevatorBottomLimitSwitch);
 
         elevatorMotors = new SpeedControllerGroup(new VictorSP(CMap.elevatorWenchMotor1), flippedElevatorMotor);
-        setOutputRange(-.7, .7);
+        setOutputRange(-.2, .2);
 
         encoderInitiallyZeroed = false;
 
@@ -79,9 +79,6 @@ public class Elevator extends PIDSubsystem {
         elevatorMotors.set(speed);
     }
 
-    public double getElevatorSpeed(){
-        return elevatorMotors.get();
-    }
 
     public boolean getElevatorTopLimitSwitch(){
         return elevatorTopLimitSwitch.get();

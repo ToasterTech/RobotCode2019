@@ -6,9 +6,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team5332.robot.CMap;
 
 public class Climber extends Subsystem {
+    public static final Object State = ;
     Solenoid frontPistons;
     Solenoid backPistons;
-
+    boolean ChangeFrontPistonState;
 
 
     public Climber(){
@@ -24,5 +25,13 @@ public class Climber extends Subsystem {
     }
 
 
+    public void ChangeFrontPistonState(boolean preferredState) {
+    }
+
+    public boolean getState() {
+    }
+
+    public void ChangeBackPistonState(boolean preferredState) {
+    }
 }
 

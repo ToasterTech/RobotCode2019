@@ -9,7 +9,6 @@ public class SetElevator extends Command {
 
 
     public SetElevator(double setpoint) {
-
        this.setpoint = setpoint;
 
 
