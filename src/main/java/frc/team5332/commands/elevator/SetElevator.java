@@ -20,11 +20,11 @@ public class SetElevator extends Command {
     }
 
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     protected void end() {
-
+        System.out.println("New Setpoint: " + setpoint);
     }
 
 }
