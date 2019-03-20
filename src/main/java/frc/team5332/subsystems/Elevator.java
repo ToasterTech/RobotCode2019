@@ -23,7 +23,7 @@ public class Elevator extends PIDSubsystem {
     //Presets
     public static final double ZERO = 0;
     public static final double LOADING_STATION = 0.2;
-    public static final double CARGO_SHIP_SCORING = 0;
+    public static final double CARGO_SHIP_SCORING = 15.24977;
     public static final double ROCKET_LEVEL_2_HATCH = 0;
     public static final double ROCKET_LEVEL_3_HATCH = 0;
     public static final double ROCKET_LEVEL_1_CARGO = 0;

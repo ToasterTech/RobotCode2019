@@ -6,16 +6,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team5332.robot.CMap;
 
 public class Climber extends Subsystem {
-    public static final Object State = ;
     Solenoid frontPistons;
     Solenoid backPistons;
-    boolean ChangeFrontPistonState;
-
+    Solenoid airRegulator;
 
     public Climber(){
         frontPistons = new Solenoid(CMap.frontPistonsSolenoid);
         backPistons = new Solenoid(CMap.backPistonsSolenoid);
-
+        airRegulator = new Solenoid(CMap.airRegulatorSolenoid);
 
     }
 
@@ -24,14 +22,25 @@ public class Climber extends Subsystem {
 
     }
 
-
-    public void ChangeFrontPistonState(boolean preferredState) {
+    public void changeFrontPistonState(){
+        boolean currentState = frontPistons.get();
+        System.out.println("Old Front Piston State: " + currentState);
+        frontPistons.set(!currentState);
+        System.out.println("New Front Piston State: " + frontPistons.get());
     }
 
-    public boolean getState() {
+    public void changeBackPistonState(){
+        boolean currentState = backPistons.get();
+        System.out.println("Old Back Piston State: " + currentState);
+        backPistons.set(!currentState);
+        System.out.println("New Back Piston State: " + backPistons.get());
     }
 
-    public void ChangeBackPistonState(boolean preferredState) {
+    public void changeAirRegulatorState(){
+        boolean currentState = airRegulator.get();
+        System.out.println("Old Air Regulator State: " + currentState);
+        airRegulator.set(!currentState);
+        System.out.println("New Air Regulator State: " + airRegulator.get());
     }
 }
 

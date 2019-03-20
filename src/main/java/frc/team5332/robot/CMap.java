@@ -5,6 +5,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team5332.commands.climber.ChangeAirRegulatorState;
 import frc.team5332.commands.climber.ChangeBackPistonState;
 import frc.team5332.commands.climber.ChangeFrontPistonState;
 import frc.team5332.commands.drivetrain.DriveStraight;
@@ -67,6 +68,7 @@ public class CMap {
     public static int rollerSolenoid = 2;
     public static int frontPistonsSolenoid = 3;
     public static int backPistonsSolenoid = 4;
+    public static int airRegulatorSolenoid = 5;
 
 
     // Subsystems
@@ -80,11 +82,13 @@ public class CMap {
 
 
     // Buttons
+
     public static JoystickButton greenbutton = new JoystickButton(gamepad, 1);
+    public static JoystickButton redButton = new JoystickButton(gamepad, 2);
+    public static JoystickButton yellowButton = new JoystickButton(gamepad, 3);
+    public static JoystickButton blueButton = new JoystickButton(gamepad, 4);
     public static JoystickButton leftbumper = new JoystickButton(gamepad, 5);
     public static JoystickButton rightbumper = new JoystickButton(gamepad, 6);
-    public static JoystickButton bluebutton = new JoystickButton(gamepad, 2);
-    public static JoystickButton yellowbutton = new JoystickButton(gamepad, 3);
 
 
     public static JoystickButton operator1 = new JoystickButton(operatorStick,1);
@@ -109,9 +113,11 @@ public class CMap {
         operator5.whenPressed(new CargoMode());
         operator8.whenPressed(new ResetIntake());
         operator1.whileHeld(new ExpelCargo());
-        greenbutton.whileHeld(new DriveStraight());
-        bluebutton.whileHeld(new ChangeFrontPistonState());
-        greenbutton.whileHeld(new ChangeBackPistonState());
+
+        yellowButton.whenPressed(new ChangeAirRegulatorState());
+        blueButton.whenPressed(new ChangeFrontPistonState());
+        greenbutton.whenPressed(new ChangeBackPistonState());
+        leftbumper.whileHeld(new DriveStraight());
     }
         public static void setupNetworkTables(){
             mainInstance = NetworkTableInstance.getDefault();

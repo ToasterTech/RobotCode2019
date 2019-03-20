@@ -61,7 +61,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     Scheduler.getInstance().add(new JoystickDrive());
     Scheduler.getInstance().add(new JoystickElevator());
-    Scheduler.getInstance().add(new MonitorEncoder());
+    //Scheduler.getInstance().add(new MonitorEncoder());
   }
 
   /**
@@ -79,7 +79,7 @@ public class Robot extends TimedRobot {
    Scheduler.getInstance().removeAll();
    Scheduler.getInstance().add(new JoystickDrive());
    Scheduler.getInstance().add(new JoystickElevator());
-   Scheduler.getInstance().add(new MonitorEncoder());
+   //Scheduler.getInstance().add(new MonitorEncoder());
    //Scheduler.getInstance().add(new SetElevator(15.24977));
 
    CMap.elevator.resetencoder();
@@ -95,8 +95,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
       //System.out.println(CMap.drivetrain.getAngle());
-      System.out.println("Bottom Limit Switch: " + CMap.elevator.getElevatorBottomLimitSwitch());
-      CMap.elevator.printEncoderOutputs();
+      //System.out.println("Bottom Limit Switch: " + CMap.elevator.getElevatorBottomLimitSwitch());
+      //CMap.elevator.printEncoderOutputs();
     Scheduler.getInstance().run();
     //System.out.println(CMap.intake.getLimitSwitch());
   }

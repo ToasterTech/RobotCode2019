@@ -5,15 +5,15 @@ import frc.team5332.robot.CMap;
 import frc.team5332.subsystems.Climber;
 
 
-public class ChangeBackPistonState extends Command {
+public class ChangeAirRegulatorState extends Command {
 
-    public ChangeBackPistonState() {
+    public ChangeAirRegulatorState() {
 
     }
 
 
     protected void execute() {
-        CMap.climber.changeBackPistonState();
+        CMap.climber.changeAirRegulatorState();
     }
 
     @Override
