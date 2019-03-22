@@ -18,11 +18,11 @@ public class Elevator extends PIDSubsystem {
     Encoder elevatorEncoder;
 
     public boolean encoderInitiallyZeroed;
-
+    private boolean isEnabled;
 
     //Presets
     public static final double ZERO = 0;
-    public static final double LOADING_STATION = 0.2;
+    public static final double HATCH_ZERO = 0.2;
     public static final double CARGO_SHIP_SCORING = 15.24977;
     public static final double ROCKET_LEVEL_2_HATCH = 0;
     public static final double ROCKET_LEVEL_3_HATCH = 0;
@@ -31,7 +31,7 @@ public class Elevator extends PIDSubsystem {
     public static final double ROCKET_LEVEL_3_CARGO = 0;
 
     public Elevator(){
-        super(1.2, 0, 0);
+        super(0.8, 0, 0);
         setAbsoluteTolerance(0.05);
 
         //We will add the elevator motor ports when we get there.
@@ -41,6 +41,7 @@ public class Elevator extends PIDSubsystem {
         elevatorEncoder = new Encoder(CMap.elevatorEncoderA, CMap.elevatorEncoderB, true, CounterBase.EncodingType.k1X);
         elevatorEncoder.setDistancePerPulse(27.75/(1090));
 
+
         elevatorTopLimitSwitch = new DigitalInput(CMap.elevatorTopLimitSwitch);
         elevatorBottomLimitSwitch = new DigitalInput(CMap.elevatorBottomLimitSwitch);
 
@@ -49,7 +50,7 @@ public class Elevator extends PIDSubsystem {
 
         encoderInitiallyZeroed = false;
 
-        disable();
+        enable();
         //elevatorPIDController = new PIDController(0.5, 0, 0, opticalSensor, elevatorMotors);
         //elevatorPIDController.setAbsoluteTolerance(0.5);
 
@@ -63,15 +64,31 @@ public class Elevator extends PIDSubsystem {
     @Override
     public void enable() {
         super.enable();
+        isEnabled = true;
+    }
+
+    public void disable(){
+        super.disable();
+        isEnabled = false;
+    }
+
+    public boolean isEnabled() {
+        return isEnabled;
     }
 
     @Override
     protected double returnPIDInput() {
-        return elevatorEncoder.getDistance();
+
+        if(getElevatorTopLimitSwitch()){
+            return 0;
+        } else {
+            return elevatorEncoder.getDistance();
+        }
     }
 
     @Override
     protected void usePIDOutput(double output){
+        //System.out.println("USING PID OUTPUT");
         setElevatorSpeed(-output);
     }
 

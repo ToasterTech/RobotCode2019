@@ -9,6 +9,8 @@ import frc.team5332.commands.climber.ChangeAirRegulatorState;
 import frc.team5332.commands.climber.ChangeBackPistonState;
 import frc.team5332.commands.climber.ChangeFrontPistonState;
 import frc.team5332.commands.drivetrain.DriveStraight;
+import frc.team5332.commands.elevator.JoystickElevator;
+import frc.team5332.commands.elevator.SetElevator;
 import frc.team5332.commands.intake.*;
 import frc.team5332.commands.vision.DayToNight;
 import frc.team5332.commands.vision.VisionAlign;
@@ -34,10 +36,12 @@ public class CMap {
     // Global Variables
     public static boolean teleopExecuted;
     public static boolean visionAlignmentInProgress = false;
+    public static boolean driveStraightActive = false;
 
     // Joysticks
     public static Joystick gamepad = new Joystick(0);
     public static Joystick operatorStick = new Joystick(1);
+    public static Joystick elevatorController = new Joystick(2);
 
     // Motors
     public static int leftDriveMotor1 = 0;
@@ -66,9 +70,9 @@ public class CMap {
     public static int hatchGrabberSolenoid = 1;
     public static int hoodSolenoid = 0;
     public static int rollerSolenoid = 2;
-    public static int frontPistonsSolenoid = 3;
-    public static int backPistonsSolenoid = 4;
-    public static int airRegulatorSolenoid = 5;
+    public static int frontPistonsSolenoid = 6;
+    public static int backPistonsSolenoid = 5;
+    public static int airRegulatorSolenoid = 4;
 
 
     // Subsystems
@@ -93,7 +97,6 @@ public class CMap {
 
     public static JoystickButton operator1 = new JoystickButton(operatorStick,1);
     public static JoystickButton operator2 = new JoystickButton(operatorStick, 2);
-
     public static JoystickButton operator3 = new JoystickButton(operatorStick, 3);
     public static JoystickButton operator4 = new JoystickButton(operatorStick, 4);
     public static JoystickButton operator5 = new JoystickButton(operatorStick, 5);
@@ -103,6 +106,16 @@ public class CMap {
     public static JoystickButton operator9 = new JoystickButton(operatorStick, 9);
     public static JoystickButton operator10 = new JoystickButton(operatorStick, 10);
 
+    public static JoystickButton elevatorController1 = new JoystickButton(elevatorController, 1);
+    public static JoystickButton elevatorController2 = new JoystickButton(elevatorController, 2);
+    public static JoystickButton elevatorController3 = new JoystickButton(elevatorController, 3);
+    public static JoystickButton elevatorController4 = new JoystickButton(elevatorController, 4);
+    public static JoystickButton elevatorController5 = new JoystickButton(elevatorController, 5);
+    public static JoystickButton elevatorController6 = new JoystickButton(elevatorController, 6);
+    public static JoystickButton elevatorController7 = new JoystickButton(elevatorController, 7);
+
+    public static int leftTriggerAxis = 1;
+    public static int rightTriggerAxis= 2;
 
     public static void setupJoystickButtons() {
         //leftbumper.whenPressed(new VisionAlign());
@@ -113,11 +126,25 @@ public class CMap {
         operator5.whenPressed(new CargoMode());
         operator8.whenPressed(new ResetIntake());
         operator1.whileHeld(new ExpelCargo());
+        operator2.whileHeld(new JoystickElevator());
 
         yellowButton.whenPressed(new ChangeAirRegulatorState());
         blueButton.whenPressed(new ChangeFrontPistonState());
         greenbutton.whenPressed(new ChangeBackPistonState());
         leftbumper.whileHeld(new DriveStraight());
+
+        /*
+        elevatorController1.whenPressed(new SetElevator(CMap.elevator.ZERO, false));
+        elevatorController6.whenPressed(new SetElevator(1.5, true));
+        elevatorController7.whenPressed(new SetElevator(-1.5, true));*/
+
+        elevatorController1.whenPressed(new SetElevator(1));
+        elevatorController2.whenPressed(new SetElevator(2));
+        elevatorController3.whenPressed(new SetElevator(3));
+        elevatorController4.whenPressed(new SetElevator(4));
+        elevatorController5.whenPressed(new SetElevator(5));
+        elevatorController6.whenPressed(new SetElevator(6));
+        elevatorController7.whenPressed(new SetElevator(7));
     }
         public static void setupNetworkTables(){
             mainInstance = NetworkTableInstance.getDefault();

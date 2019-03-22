@@ -18,14 +18,13 @@ public class JoystickElevator extends Command {
         if(CMap.elevator.isEnabled()){
             CMap.elevator.disable();
         }
-        System.out.println(CMap.elevator.getElevatorTopLimitSwitch());
+        System.out.println("Top Limit Switch: " + CMap.elevator.getElevatorTopLimitSwitch());
+        System.out.println("Bottom Limit Switch: " + CMap.elevator.getElevatorBottomLimitSwitch());
 
         if (CMap.elevator.getElevatorTopLimitSwitch() && (CMap.operatorStick.getY() > 0)) {
-            System.out.println("Running Limit Switch Code");
             CMap.elevator.setElevatorSpeed(0);
         } else {
             CMap.elevator.setElevatorSpeed(-CMap.operatorStick.getY());
-            System.out.println("Not");
         }
 
         //CMap.elevator.setElevatorSpeed(CMap.operatorStick.getY());

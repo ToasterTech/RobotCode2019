@@ -8,26 +8,33 @@ public class MonitorEncoder extends Command {
     boolean lastReset = false;
     boolean endCommand = false;
 
+    boolean lastCyclePressed = false;
+
     public MonitorEncoder(){
 
     }
 
     @Override
     protected void execute() {
-        if(CMap.elevator.getElevatorBottomLimitSwitch()) {
-            System.out.println("Resetting Encoder");
-            CMap.elevator.resetencoder();
+        if(CMap.elevator.getElevatorBottomLimitSwitch()){
 
-            lastReset = true;
-        } else if(!CMap.elevator.getElevatorBottomLimitSwitch() && lastReset){
-            endCommand = true;
+            if(!lastCyclePressed){
+                lastCyclePressed = true;
+            } else {
+                CMap.elevator.resetencoder();
+                lastCyclePressed = false;
+            }
+
         }
+
+        System.out.println("Elevator Encoder: " + CMap.elevator.getPosition());
+
 
     }
 
     @Override
     protected boolean isFinished() {
-        return endCommand;
+        return false;
     }
 
     @Override

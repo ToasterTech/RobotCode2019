@@ -8,6 +8,7 @@ import frc.team5332.subsystems.Intake;
 public class ResetIntake extends CommandGroup {
 
     public ResetIntake() {
+
         addSequential(new ChangeGrabberState(false));
         addSequential(new ChangeRollerIntakeState(false));
         addSequential(new ChangeHoodState(false));
@@ -15,6 +16,7 @@ public class ResetIntake extends CommandGroup {
     }
 
     protected void execute() {
+        System.out.println("Reset Intake State");
         CMap.intake.setCurrentState(Intake.State.RESET);
     }
 }
