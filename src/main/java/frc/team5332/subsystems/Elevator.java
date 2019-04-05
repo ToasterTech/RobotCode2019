@@ -24,11 +24,6 @@ public class Elevator extends PIDSubsystem {
     public static final double ZERO = 0;
     public static final double HATCH_ZERO = 0.2;
     public static final double CARGO_SHIP_SCORING = 15.24977;
-    public static final double ROCKET_LEVEL_2_HATCH = 0;
-    public static final double ROCKET_LEVEL_3_HATCH = 0;
-    public static final double ROCKET_LEVEL_1_CARGO = 0;
-    public static final double ROCKET_LEVEL_2_CARGO = 0;
-    public static final double ROCKET_LEVEL_3_CARGO = 0;
 
     public Elevator(){
         super(0.8, 0, 0);
@@ -50,7 +45,7 @@ public class Elevator extends PIDSubsystem {
 
         encoderInitiallyZeroed = false;
 
-        enable();
+        disable();
         //elevatorPIDController = new PIDController(0.5, 0, 0, opticalSensor, elevatorMotors);
         //elevatorPIDController.setAbsoluteTolerance(0.5);
 

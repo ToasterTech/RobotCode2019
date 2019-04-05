@@ -1,22 +1,12 @@
 package frc.team5332.robot;
 
-import edu.wpi.cscore.HttpCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.team5332.commands.drivetrain.AngleDrivePivot;
-import frc.team5332.commands.drivetrain.AngleDriveTank;
-import frc.team5332.commands.drivetrain.DriveStraight;
 import frc.team5332.commands.drivetrain.JoystickDrive;
 import frc.team5332.commands.elevator.JoystickElevator;
-import frc.team5332.commands.elevator.MonitorEncoder;
-import frc.team5332.commands.elevator.SetElevator;
-import frc.team5332.commands.vision.ListenForJetsonConnection;
-import frc.team5332.commands.vision.ShutdownJetson;
-
-import java.beans.Encoder;
+import frc.team5332.commands.intake.DynamicIntake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -39,6 +29,7 @@ public class Robot extends TimedRobot {
 
     CameraServer cameraServer = CameraServer.getInstance();
     cameraServer.startAutomaticCapture(0);
+    cameraServer.startAutomaticCapture(1);
 
     //HttpCamera jetsonCamera = new HttpCamera("outputStreamServer", "http://tegra-ubuntu.local:5800/stream.mjpg?compression=10");
     //cameraServer.startAutomaticCapture(jetsonCamera);
@@ -61,9 +52,10 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     Scheduler.getInstance().add(new JoystickDrive());
-    Scheduler.getInstance().add(new DriveStraight());
+    //Scheduler.getInstance().add(new DynamicIntake());
+    //Scheduler.getInstance().add(new DriveStraight());
     Scheduler.getInstance().add(new JoystickElevator());
-    Scheduler.getInstance().add(new MonitorEncoder());
+
     //Scheduler.getInstance().add(new MonitorEncoder());
   }
 
@@ -80,11 +72,13 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit(){
    Scheduler.getInstance().removeAll();
+
    Scheduler.getInstance().add(new JoystickDrive());
-   //Scheduler.getInstance().add(new SetElevator(CMap.elevator.HATCH_ZERO, false));
-   Scheduler.getInstance().add(new DriveStraight());
-   //Scheduler.getInstance().add(new JoystickElevator());
-   Scheduler.getInstance().add(new MonitorEncoder());
+    Scheduler.getInstance().add(new DynamicIntake());
+
+    System.out.println("Right Bumper Status: " + CMap.rightBumperPressed);
+   //Scheduler.getInstance().add(new DriveStraight());
+    Scheduler.getInstance().add(new JoystickElevator());
 
 
    //Scheduler.getInstance().add(new SetElevator(15.24977));
@@ -102,8 +96,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
       //System.out.println(CMap.drivetrain.getAngle());
-      System.out.println("Bottom Limit Switch: " + CMap.elevator.getElevatorBottomLimitSwitch());
-      CMap.elevator.printEncoderOutputs();
+      //System.out.println("Bottom Limit Switch: " + CMap.elevator.getElevatorBottomLimitSwitch());
     Scheduler.getInstance().run();
     //System.out.println(CMap.intake.getLimitSwitch());
   }

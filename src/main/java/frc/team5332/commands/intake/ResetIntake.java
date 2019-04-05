@@ -9,14 +9,23 @@ public class ResetIntake extends CommandGroup {
 
     public ResetIntake() {
 
-        addSequential(new ChangeGrabberState(false));
+        addSequential(new ResetHatchGrabber());
+        //addSequential(new ChangeGrabberState(false));
         addSequential(new ChangeRollerIntakeState(false));
         addSequential(new ChangeHoodState(false));
 
     }
 
     protected void execute() {
-        System.out.println("Reset Intake State");
         CMap.intake.setCurrentState(Intake.State.RESET);
+        CMap.intake.changeHatchGrabberState(false);
+
+        System.out.println("Reset Intake State");
+        //CMap.intake.setCurrentState(Intake.State.RESET);
+    }
+
+    @Override
+    protected boolean isFinished() {
+        return !CMap.intake.getGrabberState();
     }
 }

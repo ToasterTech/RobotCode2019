@@ -8,17 +8,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team5332.commands.climber.ChangeAirRegulatorState;
 import frc.team5332.commands.climber.ChangeBackPistonState;
 import frc.team5332.commands.climber.ChangeFrontPistonState;
-import frc.team5332.commands.drivetrain.DriveStraight;
-import frc.team5332.commands.elevator.JoystickElevator;
-import frc.team5332.commands.elevator.SetElevator;
 import frc.team5332.commands.intake.*;
-import frc.team5332.commands.vision.DayToNight;
-import frc.team5332.commands.vision.VisionAlign;
 import frc.team5332.subsystems.*;
 
 public class CMap {
 
-
+    public static boolean rightBumperPressed = false;
     // NetworkTables stuff
     public static NetworkTableInstance mainInstance;
     public static NetworkTable visionTable;
@@ -70,9 +65,9 @@ public class CMap {
     public static int hatchGrabberSolenoid = 1;
     public static int hoodSolenoid = 0;
     public static int rollerSolenoid = 2;
-    public static int frontPistonsSolenoid = 6;
+    public static int frontPistonsSolenoid = 4;
     public static int backPistonsSolenoid = 5;
-    public static int airRegulatorSolenoid = 4;
+    public static int airRegulatorSolenoid = 6;
 
 
     // Subsystems
@@ -89,8 +84,8 @@ public class CMap {
 
     public static JoystickButton greenbutton = new JoystickButton(gamepad, 1);
     public static JoystickButton redButton = new JoystickButton(gamepad, 2);
-    public static JoystickButton yellowButton = new JoystickButton(gamepad, 3);
-    public static JoystickButton blueButton = new JoystickButton(gamepad, 4);
+    public static JoystickButton yellowButton = new JoystickButton(gamepad, 4);
+    public static JoystickButton blueButton = new JoystickButton(gamepad, 3);
     public static JoystickButton leftbumper = new JoystickButton(gamepad, 5);
     public static JoystickButton rightbumper = new JoystickButton(gamepad, 6);
 
@@ -126,25 +121,23 @@ public class CMap {
         operator5.whenPressed(new CargoMode());
         operator8.whenPressed(new ResetIntake());
         operator1.whileHeld(new ExpelCargo());
-        operator2.whileHeld(new JoystickElevator());
+        //operator2.whileHeld(new JoystickElevator());
 
         yellowButton.whenPressed(new ChangeAirRegulatorState());
-        blueButton.whenPressed(new ChangeFrontPistonState());
+        //blueButton.whenPressed(new ChangeFrontPistonState());
         greenbutton.whenPressed(new ChangeBackPistonState());
-        leftbumper.whileHeld(new DriveStraight());
+
+        rightbumper.whenPressed(new ReadBumperPress());
+        //rightbumper.whileHeld(new IntakeCargo());
+        blueButton.whenPressed(new ChangeGrabberState());
+
+        //rightbumper.whenPressed(new ReadBumperPress());
 
         /*
         elevatorController1.whenPressed(new SetElevator(CMap.elevator.ZERO, false));
         elevatorController6.whenPressed(new SetElevator(1.5, true));
         elevatorController7.whenPressed(new SetElevator(-1.5, true));*/
 
-        elevatorController1.whenPressed(new SetElevator(1));
-        elevatorController2.whenPressed(new SetElevator(2));
-        elevatorController3.whenPressed(new SetElevator(3));
-        elevatorController4.whenPressed(new SetElevator(4));
-        elevatorController5.whenPressed(new SetElevator(5));
-        elevatorController6.whenPressed(new SetElevator(6));
-        elevatorController7.whenPressed(new SetElevator(7));
     }
         public static void setupNetworkTables(){
             mainInstance = NetworkTableInstance.getDefault();

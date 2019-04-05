@@ -15,6 +15,8 @@ public class  Intake extends Subsystem {
 
     State currentState;
 
+    public boolean dynamicHatchIntakeRanBefore = false;
+
     public enum State{
         RESET,
         HATCH,
@@ -26,6 +28,7 @@ public class  Intake extends Subsystem {
         cargoRollers = new VictorSP(CMap.intakeMotor1);
         currentState = State.RESET;
 
+        cargoRollers.setInverted(true);
 
         hoodPistons = new Solenoid(CMap.hoodSolenoid);
         rollerPistons = new Solenoid(CMap.rollerSolenoid);
@@ -36,6 +39,7 @@ public class  Intake extends Subsystem {
     protected void initDefaultCommand() {
 
     }
+
 
     public void changeHoodState(){
         boolean currentstate = hoodPistons.get();
@@ -55,6 +59,7 @@ public class  Intake extends Subsystem {
         boolean currentstate = hatchGrabber.get();
         System.out.println("Previous Setting: " + currentstate);
         hatchGrabber.set(!currentstate);
+        System.out.println("Projected New State: " + !currentstate);
         System.out.println("New Setting: " + hatchGrabber.get());
     }
 
@@ -82,6 +87,10 @@ public class  Intake extends Subsystem {
 
     public void changeRollerIntakeState(boolean newValue){
         rollerPistons.set(newValue);
+    }
+
+    public boolean getGrabberState(){
+        return hatchGrabber.get();
     }
 
     public void setRollerSpeed(double speed){

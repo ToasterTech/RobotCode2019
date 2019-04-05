@@ -15,11 +15,6 @@ public class JoystickElevator extends Command {
 
     @Override
     protected void execute() {
-        if(CMap.elevator.isEnabled()){
-            CMap.elevator.disable();
-        }
-        System.out.println("Top Limit Switch: " + CMap.elevator.getElevatorTopLimitSwitch());
-        System.out.println("Bottom Limit Switch: " + CMap.elevator.getElevatorBottomLimitSwitch());
 
         if (CMap.elevator.getElevatorTopLimitSwitch() && (CMap.operatorStick.getY() > 0)) {
             CMap.elevator.setElevatorSpeed(0);
@@ -45,8 +40,6 @@ public class JoystickElevator extends Command {
 
     @Override
     protected void end() {
-        CMap.elevator.enable();
-        CMap.elevator.setSetpointRelative(0);
 
     }
 }
