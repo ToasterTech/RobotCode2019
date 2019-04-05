@@ -127,8 +127,9 @@ public class CMap {
         //blueButton.whenPressed(new ChangeFrontPistonState());
         greenbutton.whenPressed(new ChangeBackPistonState());
 
-        rightbumper.whenPressed(new ReadBumperPress());
-        //rightbumper.whileHeld(new IntakeCargo());
+        //rightbumper.whenPressed(new ReadBumperPress());
+
+        rightbumper.whileHeld(new IntakeCargo());
         blueButton.whenPressed(new ChangeGrabberState());
 
         //rightbumper.whenPressed(new ReadBumperPress());

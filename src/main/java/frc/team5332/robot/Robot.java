@@ -74,9 +74,9 @@ public class Robot extends TimedRobot {
    Scheduler.getInstance().removeAll();
 
    Scheduler.getInstance().add(new JoystickDrive());
-    Scheduler.getInstance().add(new DynamicIntake());
+    //Scheduler.getInstance().add(new DynamicIntake());
 
-    System.out.println("Right Bumper Status: " + CMap.rightBumperPressed);
+    //System.out.println("Right Bumper Status: " + CMap.rightBumperPressed);
    //Scheduler.getInstance().add(new DriveStraight());
     Scheduler.getInstance().add(new JoystickElevator());
 
